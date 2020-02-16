@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Velocity</string>
+    <string name="journey_planner_button_redirect">Journey Planner</string>
+    <string name="line_timetable_button_redirect">Line Timetable</string>
+    <string name="options_button_redirect">Options</string>
+    <string name="bus_stop_button_redirect">Bus Stops</string>
 </resources>
