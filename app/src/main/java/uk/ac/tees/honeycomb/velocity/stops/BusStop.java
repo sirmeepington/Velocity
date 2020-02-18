@@ -1,5 +1,6 @@
 package uk.ac.tees.honeycomb.velocity.stops;
 
+import uk.ac.tees.honeycomb.velocity.entities.Bearing;
 import uk.ac.tees.honeycomb.velocity.entities.Locations;
 
 public interface BusStop {

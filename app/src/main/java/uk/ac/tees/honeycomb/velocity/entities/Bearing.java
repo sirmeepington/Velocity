@@ -1,4 +1,4 @@
-package uk.ac.tees.honeycomb.velocity.stops;
+package uk.ac.tees.honeycomb.velocity.entities;
 
 public enum Bearing {
     N,
