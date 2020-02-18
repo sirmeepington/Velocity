@@ -4,24 +4,36 @@ import uk.ac.tees.honeycomb.velocity.entities.Locations;
 
 public class NaptanBusStop implements BusStop {
 
-    String streetLang;
+    private String atcoCode;
 
-    String indicatorLang;
+    private String smsCode;
 
-    String NptgLocalityCode;
+    private String name;
 
-    String StopType;
+    private Locations location;
 
-    String BusStopType;
+    private String street;
 
-    String TimingStatus;
+    private String indicator;
+
+    private enum bearing {N, E, S, W, NE, SE, SW, NW};
+
+    private String nptgLocalityCode; /* Matches Pattern [EN][0S][0-9]{6} */
+
+    private String locality;
+
+    private String stopType;
+
+    private String busStopType;
+
+    private String timingStatus;
 
     public NaptanBusStop() {
 
     }
 
     /**
-     * Bus Stop identifier for use with Transport API and Naptan Database.
+     * Accessor method for the Bus Stop identifier for use with Transport API and Naptan Database.
      *
      * @return Unique String id for Bus stops.
      */
@@ -31,7 +43,7 @@ public class NaptanBusStop implements BusStop {
     }
 
     /**
-     * Shorthand for ATCO code.
+     * Accessor method for the Shorthand for ATCO code.
      *
      * @return Unique String id for Bus stops.
      */
@@ -41,7 +53,7 @@ public class NaptanBusStop implements BusStop {
     }
 
     /**
-     * Name of the Bus stop
+     * Accessor method for the Name of the Bus stop
      *
      * @return String of the Bus stop name.
      */
@@ -51,7 +63,7 @@ public class NaptanBusStop implements BusStop {
     }
 
     /**
-     * Latitude and Longitude values for the Bus stop.
+     * Accessor method for the Latitude and Longitude values for the Bus stop.
      *
      * @return Locations class containing Latitude and Longitude.
      */
@@ -61,34 +73,76 @@ public class NaptanBusStop implements BusStop {
     }
 
     /**
-     * Bearing of the Bus stop.
+     * Accessor method for the Bearing of the Bus stop.
      *
      * @return String indicating the bearing.
      */
     @Override
-    public String bearing() {
+    public String getBearing() {
         return null;
     }
 
     /**
-     * Indicator for which direction the Bus is travelling.
+     * Accessor method for the Indicator for which direction the Bus is travelling.
      *
      * @return String of the indicator.
      */
     @Override
-    public String indicator() {
+    public String getIndicator() {
         return null;
     }
 
     /**
-     * Locality/Location of the Bus stop.
+     * Accessor method for the Locality/Location of the Bus stop.
      *
      * @return General area and Town name of the Bus stop.
      */
     @Override
-    public String locality() {
+    public String getLocality() {
         return null;
     }
 
+    /**
+     * Accessor method for the Street of the Bus stop.
+     *
+     * @return The street name the Bus stop is located on.
+     */
+    public String getStreet() { return null;}
 
+    /**
+     * Accessor method or the Locality code of the Bus stop locality.
+     *
+     * @return
+     */
+    public String getNptgLocalityCode() {
+        return null;
+    }
+
+    /**
+     * Accessor method for the stop type provided by the API.
+     * We are only interested in stops labelled "BCT".
+     *
+     * @return Three letter id of the stop type.
+     */
+    public String getStopType() {
+        return null;
+    }
+
+    /**
+     * Accessor method for the type of the Bus stop.
+     *
+     * @return Three letter id of the bus stop type.
+     */
+    public String getBusStopType() {
+        return null;
+    }
+
+    /**
+     * Accessor method for the timing status of the Bus stop.
+     *
+     * @return Three letter id of the timing status.
+     */
+    public String getTimingStatus() {
+        return null;
+    }
 }

@@ -2,20 +2,20 @@ package uk.ac.tees.honeycomb.velocity.api;
 
 import java.util.ArrayList;
 
+import uk.ac.tees.honeycomb.velocity.stops.BusStop;
+
 public interface ApiSkeleton {
 
-    void busStopTimetable(String id);
+    void busStopTimetable(BusStop id);
 
-    void journey(String idFrom, String idTo);
+    void journey(BusStop idFrom, BusStop idTo);
 
-    void getBusStops(String serviceId, String destination);
+    void getBusStops(String serviceId, BusStop destination);
 
-    void getServices(String id);
+    void getServices(BusStop id);
 
-    void getBusTime(String serviceId, String current, String destination);
+    void getBusTime(String serviceId, BusStop current, BusStop destination);
 
-    ArrayList<String> getService(String serviceId, String destination);
-
-    void getLocation();
+    ArrayList<BusStop> getService(String serviceId, BusStop destination);
 }
 
