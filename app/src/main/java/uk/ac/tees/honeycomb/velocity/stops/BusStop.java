@@ -9,7 +9,7 @@ public interface BusStop {
      *
      * @return Unique String id for Bus stops.
      */
-    String getATCO();
+    String getAtcoCode();
 
     /**
      * Accessor method for the shorthand for ATCO code.
@@ -21,7 +21,7 @@ public interface BusStop {
     /**
      * Accessor method for the name of the area.
      *
-     * @return String of the Bus stop name.
+     * @return String of the Bus stop area.
      */
     String getName();
 

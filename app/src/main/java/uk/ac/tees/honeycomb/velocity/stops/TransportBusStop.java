@@ -30,7 +30,7 @@ public class TransportBusStop implements BusStop {
      * @return Unique String id for Bus stops.
      */
     @Override
-    public String getATCO() {
+    public String getAtcoCode() {
         return atcoCode;
     }
 
@@ -47,7 +47,7 @@ public class TransportBusStop implements BusStop {
     /**
      * Accessor method for the name of the area.
      *
-     * @return String of the Bus stop name.
+     * @return String of the Bus stop area.
      */
     @Override
     public String getName() {
@@ -97,7 +97,7 @@ public class TransportBusStop implements BusStop {
     /**
      * Accessor method for the name of the Bus stop.
      *
-     * @return General area and Town name of the Bus stop.
+     * @return Name of the Bus stop.
      */
     public String getStopName() { return stopName; }
 }
