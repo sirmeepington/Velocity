@@ -10,6 +10,8 @@ public class TransportBusStop implements BusStop {
 
     private String name;
 
+    private String stopName;
+
     private Locations location;
 
     private Bearing bearing;
@@ -33,7 +35,7 @@ public class TransportBusStop implements BusStop {
     }
 
     /**
-     * Accessor method for the Shorthand for ATCO code.
+     * Accessor method for the shorthand for ATCO code.
      *
      * @return Unique String id for Bus stops.
      */
@@ -43,7 +45,7 @@ public class TransportBusStop implements BusStop {
     }
 
     /**
-     * Accessor method for the Name of the Bus stop.
+     * Accessor method for the name of the area.
      *
      * @return String of the Bus stop name.
      */
@@ -91,4 +93,11 @@ public class TransportBusStop implements BusStop {
     public String getLocality() {
         return locality;
     }
+
+    /**
+     * Accessor method for the name of the Bus stop.
+     *
+     * @return General area and Town name of the Bus stop.
+     */
+    public String getStopName() { return stopName; }
 }

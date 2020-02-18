@@ -43,7 +43,7 @@ public class NaptanBusStop implements BusStop {
     }
 
     /**
-     * Accessor method for the Shorthand for ATCO code.
+     * Accessor method for the shorthand for ATCO code.
      *
      * @return Unique String id for Bus stops.
      */
@@ -53,7 +53,7 @@ public class NaptanBusStop implements BusStop {
     }
 
     /**
-     * Accessor method for the Name of the Bus stop
+     * Accessor method for the name of the area
      *
      * @return String of the Bus stop name.
      */
