@@ -3,6 +3,10 @@ package uk.ac.tees.honeycomb.velocity.stops;
 import uk.ac.tees.honeycomb.velocity.entities.Bearing;
 import uk.ac.tees.honeycomb.velocity.entities.Locations;
 
+/**
+ * Class to interact with the TransportApi api to request and retrieve data.
+ * Implements the Bus Stop interface.
+ */
 public class TransportBusStop implements BusStop {
 
     private String atcoCode;
@@ -68,7 +72,7 @@ public class TransportBusStop implements BusStop {
     /**
      * Accessor method for the Bearing of the Bus stop.
      *
-     * @return String indicating the bearing.
+     * @return Bearing enum indicating the bearing of the bus stop.
      */
     @Override
     public Bearing getBearing() {

@@ -3,6 +3,10 @@ package uk.ac.tees.honeycomb.velocity.stops;
 import uk.ac.tees.honeycomb.velocity.entities.Bearing;
 import uk.ac.tees.honeycomb.velocity.entities.Locations;
 
+/**
+ * Class to interact with the NaPTAN api to request and retrieve data.
+ * Implements the Bus Stop interface.
+ */
 public class NaptanBusStop implements BusStop {
 
     private String atcoCode;
@@ -76,7 +80,7 @@ public class NaptanBusStop implements BusStop {
     /**
      * Accessor method for the Bearing of the Bus stop.
      *
-     * @return String indicating the bearing.
+     * @return Bearing enum indicating the bearing of the bus stop.
      */
     @Override
     public Bearing getBearing() {
