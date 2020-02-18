@@ -16,7 +16,7 @@ public class NaptanBusStop implements BusStop {
 
     private String indicator;
 
-    private enum bearing {N, E, S, W, NE, SE, SW, NW};
+    private Bearing bearing;
 
     private String nptgLocalityCode; /* Matches Pattern [EN][0S][0-9]{6} */
 
@@ -39,7 +39,7 @@ public class NaptanBusStop implements BusStop {
      */
     @Override
     public String getATCO() {
-        return null;
+        return atcoCode;
     }
 
     /**
@@ -49,7 +49,7 @@ public class NaptanBusStop implements BusStop {
      */
     @Override
     public String getSmsCode() {
-        return null;
+        return smsCode;
     }
 
     /**
@@ -59,7 +59,7 @@ public class NaptanBusStop implements BusStop {
      */
     @Override
     public String getName() {
-        return null;
+        return name;
     }
 
     /**
@@ -69,7 +69,7 @@ public class NaptanBusStop implements BusStop {
      */
     @Override
     public Locations getLocation() {
-        return null;
+        return location;
     }
 
     /**
@@ -78,8 +78,8 @@ public class NaptanBusStop implements BusStop {
      * @return String indicating the bearing.
      */
     @Override
-    public String getBearing() {
-        return null;
+    public Bearing getBearing() {
+        return bearing;
     }
 
     /**
@@ -89,7 +89,7 @@ public class NaptanBusStop implements BusStop {
      */
     @Override
     public String getIndicator() {
-        return null;
+        return indicator;
     }
 
     /**
@@ -99,7 +99,7 @@ public class NaptanBusStop implements BusStop {
      */
     @Override
     public String getLocality() {
-        return null;
+        return locality;
     }
 
     /**
@@ -107,7 +107,7 @@ public class NaptanBusStop implements BusStop {
      *
      * @return The street name the Bus stop is located on.
      */
-    public String getStreet() { return null;}
+    public String getStreet() { return street;}
 
     /**
      * Accessor method or the Locality code of the Bus stop locality.
@@ -115,7 +115,7 @@ public class NaptanBusStop implements BusStop {
      * @return
      */
     public String getNptgLocalityCode() {
-        return null;
+        return nptgLocalityCode;
     }
 
     /**
@@ -125,7 +125,7 @@ public class NaptanBusStop implements BusStop {
      * @return Three letter id of the stop type.
      */
     public String getStopType() {
-        return null;
+        return stopType;
     }
 
     /**
@@ -134,7 +134,7 @@ public class NaptanBusStop implements BusStop {
      * @return Three letter id of the bus stop type.
      */
     public String getBusStopType() {
-        return null;
+        return busStopType;
     }
 
     /**
@@ -143,6 +143,6 @@ public class NaptanBusStop implements BusStop {
      * @return Three letter id of the timing status.
      */
     public String getTimingStatus() {
-        return null;
+        return timingStatus;
     }
 }

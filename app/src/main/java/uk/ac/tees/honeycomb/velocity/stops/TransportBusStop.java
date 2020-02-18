@@ -12,7 +12,7 @@ public class TransportBusStop implements BusStop {
 
     private Locations location;
 
-    private enum bearing {N, E, S, W, NE, SE, SW, NW};
+    private Bearing bearing;
 
     private String indicator;
 
@@ -29,7 +29,7 @@ public class TransportBusStop implements BusStop {
      */
     @Override
     public String getATCO() {
-        return null;
+        return atcoCode;
     }
 
     /**
@@ -39,7 +39,7 @@ public class TransportBusStop implements BusStop {
      */
     @Override
     public String getSmsCode() {
-        return null;
+        return smsCode;
     }
 
     /**
@@ -49,7 +49,7 @@ public class TransportBusStop implements BusStop {
      */
     @Override
     public String getName() {
-        return null;
+            return name;
     }
 
     /**
@@ -59,7 +59,7 @@ public class TransportBusStop implements BusStop {
      */
     @Override
     public Locations getLocation() {
-        return null;
+        return location;
     }
 
     /**
@@ -68,8 +68,8 @@ public class TransportBusStop implements BusStop {
      * @return String indicating the bearing.
      */
     @Override
-    public String getBearing() {
-        return null;
+    public Bearing getBearing() {
+        return bearing;
     }
 
     /**
@@ -79,7 +79,7 @@ public class TransportBusStop implements BusStop {
      */
     @Override
     public String getIndicator() {
-        return null;
+        return indicator;
     }
 
     /**
@@ -89,6 +89,6 @@ public class TransportBusStop implements BusStop {
      */
     @Override
     public String getLocality() {
-        return null;
+        return locality;
     }
 }

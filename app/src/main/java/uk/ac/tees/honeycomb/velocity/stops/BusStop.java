@@ -37,7 +37,7 @@ public interface BusStop {
      *
      * @return String indicating the bearing.
      */
-    String getBearing();
+    Bearing getBearing();
 
     /**
      * Accessor method for the Indicator for which direction the Bus is travelling.
