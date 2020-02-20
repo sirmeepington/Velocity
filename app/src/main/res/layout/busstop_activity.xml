@@ -38,21 +38,42 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.003" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cd"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+    <TableLayout
+        android:id="@+id/Table"
+        android:layout_width="393dp"
+        android:layout_height="524dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="420dp"
-        android:scrollbarStyle="insideInset"
-        android:scrollbars="vertical"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirm_busstop"
-        app:layout_constraintVertical_bias="0.0" />
+        tools:ignore="MissingConstraints">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+        </TableRow>
+
+        <TableRow/>
+
+        <TableRow/>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"/>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"/>
+
+    </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

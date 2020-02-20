@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Velocity</string>
+    <string name="confirm_BusStop">Confirm</string>
+    <string name="inputBusStop_BusStop">Input BusStop</string>
 </resources>
