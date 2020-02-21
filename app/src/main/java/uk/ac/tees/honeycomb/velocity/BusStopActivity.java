@@ -1,25 +1,15 @@
 package uk.ac.tees.honeycomb.velocity;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
-import java.util.HashMap;
-import java.util.SplittableRandom;
 
 public class BusStopActivity extends AppCompatActivity {
-    //Implement interface BusStopActivity
-
-    private String id = new String();
-    private String busStopName = new String();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +23,7 @@ public class BusStopActivity extends AppCompatActivity {
 
     public void showBusStop(View view)
     {
-    EditText editText = (EditText) findViewById(R.id.busStopInput);
+        EditText editText = (EditText) findViewById(R.id.busStopInput);
         String message = editText.getText().toString();
 
 
@@ -63,26 +53,23 @@ public class BusStopActivity extends AppCompatActivity {
         bus.addView(bust);
         bus.setPaddingRelative(200,0,100,400);
         tb.addView(bus);
-for(int i=0;i<5;i++) {
-rows1[i] = new TableRow(this);
+        for (int i = 0; i < 5; i++) {
+            rows1[i] = new TableRow(this);
 
-rows2[i] = new TableRow(this);
+            rows2[i] = new TableRow(this);
 
-t[i] = new TextView(this);
-t2[i] = new TextView(this);
-t[i].setText(textArray1[i]);
-    t2[i].setText(textArray2[i]);
-rows1[i].addView(t[i]);
-rows1[i].setPadding(100,10,250,0);
-    rows1[i].addView(t2[i]);
+            t[i] = new TextView(this);
+            t2[i] = new TextView(this);
+            t[i].setText(textArray1[i]);
+            t2[i].setText(textArray2[i]);
+            rows1[i].addView(t[i]);
+            rows1[i].setPadding(100, 10, 250, 0);
+            rows1[i].addView(t2[i]);
 
-    tb.addView(rows1[i]);
+            tb.addView(rows1[i]);
 
 
-
-}
-
+        }
 
     }
-
 }

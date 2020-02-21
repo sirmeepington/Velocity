@@ -38,8 +38,7 @@ public class JourneyPlannerActivity extends AppCompatActivity {
         });
     }
 
-    public void jpSwitch(View view)
-    {
+    public void jpSwitch(View view) {
         EditText from = (EditText) findViewById(R.id.jpFrom);
         String strFrom = from.getText().toString();
         EditText to = (EditText) findViewById(R.id.jpTo);
@@ -47,6 +46,5 @@ public class JourneyPlannerActivity extends AppCompatActivity {
 
         from.setText(strTo);
         to.setText(strFrom);
-
     }
 }
