@@ -11,16 +11,12 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-   private String jpFrom = new String();
-   private String jpTo = new String();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-
 
     public void jpConfirm(View view){
 
@@ -29,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
         String[] busStops = {"BusStop1", "busStop2"};
 
-        ArrayAdapter<String> bsAdp = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,android.R.id.text1,busStops);
+        ArrayAdapter<String> bsAdp = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,android.R.id.text1,busStops);
         journey.setAdapter(bsAdp);
         journey.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
