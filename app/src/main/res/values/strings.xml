@@ -6,4 +6,5 @@
     <string name="bus_stop_button_redirect">Bus Stops</string>
     <string name="map_button_redirect">Map</string>
     <string name="title_activity_maps">Map</string>
+    <string name="google_maps_key">Google Maps</string>
 </resources>
