@@ -12,12 +12,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_journey_planner);
     }
 
     public void redirectJourney(View view)
     {
-        Intent intent = new Intent(this, JourneyPlannerActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
