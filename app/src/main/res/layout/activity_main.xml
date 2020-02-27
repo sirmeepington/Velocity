@@ -10,53 +10,111 @@
     <Button
         android:id="@+id/journeyPlannerButton"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="64dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
         android:onClick="redirectJourney"
         android:text="@string/journey_planner_button_redirect"
+        app:layout_constraintBottom_toTopOf="@+id/lineTimetableButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/imgJourneyPlanner" />
 
     <Button
         android:id="@+id/lineTimetableButton"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="64dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
         android:onClick="redirectLineTimetable"
         android:text="@string/line_timetable_button_redirect"
+        app:layout_constraintBottom_toTopOf="@+id/busStopButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/journeyPlannerButton"
+        app:layout_constraintStart_toEndOf="@+id/imgLineTimetable"
         tools:text="@string/line_timetable_button_redirect" />
 
     <Button
         android:id="@+id/busStopButton"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="64dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
         android:onClick="redirectBusStop"
         android:text="@string/bus_stop_button_redirect"
+        app:layout_constraintBottom_toTopOf="@+id/optionsButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lineTimetableButton" />
+        app:layout_constraintStart_toEndOf="@+id/imgBusStop" />
 
     <Button
         android:id="@+id/optionsButton"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="64dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
         android:onClick="redirectOptions"
         android:text="@string/options_button_redirect"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgOptions" />
+
+    <ImageView
+        android:id="@+id/imgOptions"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="32dp"
+        android:contentDescription="@string/imgOptions"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <ImageView
+        android:id="@+id/imgBusStop"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="32dp"
+        android:contentDescription="@string/imgBusStops"
+        app:layout_constraintBottom_toTopOf="@+id/imgOptions"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <ImageView
+        android:id="@+id/imgLineTimetable"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="32dp"
+        android:contentDescription="@string/imgLineTimetable"
+        app:layout_constraintBottom_toTopOf="@+id/imgBusStop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <ImageView
+        android:id="@+id/imgJourneyPlanner"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="32dp"
+        android:contentDescription="@string/imgJourneyPlanner"
+        app:layout_constraintBottom_toTopOf="@+id/imgLineTimetable"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <ImageView
+        android:id="@+id/imgVelocity"
+        android:layout_width="128dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="@string/imgVelocity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/busStopButton" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_launcher" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
