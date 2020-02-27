@@ -17,4 +17,9 @@
     <string name="home">Home</string>
     <string name="stop_timetable">Stop Timetable</string>
     <string-array name="naptan_BusStop" />
+    <string name="imgJourneyPlanner">image assigned to the journey planner</string>
+    <string name="imgVelocity">image of the velocity logo</string>
+    <string name="imgLineTimetable">image assigned with the line timetable</string>
+    <string name="imgBusStops">image assigned with the bus stops</string>
+    <string name="imgOptions">image assigned with options</string>
 </resources>
