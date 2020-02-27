@@ -23,6 +23,11 @@ public class StopByNameResponse {
     private String from;
 
     /**
+     * The name specified via the input.
+     */
+    private String name;
+
+    /**
      * Returns the stop data list.
      * @return A list of stops that match the name given.
      */
@@ -37,6 +42,14 @@ public class StopByNameResponse {
      */
     public String getDataSource(){
         return from;
+    }
+
+    /**
+     * Returns the name that was input for this set of data to be returned.
+     * @return The name that was inputted.
+     */
+    public String getName(){
+        return name;
     }
 
 }

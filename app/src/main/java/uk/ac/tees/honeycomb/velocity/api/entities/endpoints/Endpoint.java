@@ -22,7 +22,7 @@ public abstract class Endpoint<T> {
     /**
      * The endpoint's HTTP URL.
      */
-    final String endpoint;
+    private final String endpoint;
 
     Endpoint(Context context, String endpoint){
         this.context = context;

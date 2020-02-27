@@ -24,7 +24,7 @@ public class ImpetusStatus extends Endpoint<StatusResponse> {
     @Override
     public void query(Response.Listener<ImpetusResponse<StatusResponse>> listener, Response.ErrorListener errorListener) {
         ImpetusRequest<ImpetusResponse<StatusResponse>> request = new ImpetusRequest<>(
-                Impetus.getInstance(context).getBaseUrl()+endpoint,
+                getFullUrl(),
                 new TypeToken<ImpetusResponse<StatusResponse>>(){},
                 listener,
                 errorListener

@@ -10,6 +10,9 @@ import uk.ac.tees.honeycomb.velocity.api.entities.ServiceStatus;
  */
 public class StatusResponse {
 
+    /**
+     * The status object of Impetus' services.
+     */
     private ServiceStatus serviceStatus;
 
     /**

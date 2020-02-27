@@ -29,8 +29,8 @@ public class StopByName extends Endpoint<StopByNameResponse> {
     public void query(Response.Listener<ImpetusResponse<StopByNameResponse>> listener,
                       Response.ErrorListener errorListener) {
         ImpetusRequest<ImpetusResponse<StopByNameResponse>> request = new ImpetusRequest<>(
-            Impetus.getInstance(context).getBaseUrl()+endpoint,
-                new TypeToken<ImpetusResponse<StopByNameResponse>>(){},
+            getFullUrl(),
+            new TypeToken<ImpetusResponse<StopByNameResponse>>(){},
             listener,
             errorListener
         );

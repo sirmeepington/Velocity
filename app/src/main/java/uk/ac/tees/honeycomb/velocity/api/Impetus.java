@@ -57,7 +57,7 @@ public class Impetus {
      * @return The base url for impetus.
      */
     public String getBaseUrl(){
-        return context.getSharedPreferences("impetuspreferences.xml",Context.MODE_PRIVATE).getString("impetus_url","http://152.105.67.114:5000");
+        return context.getSharedPreferences("impetuspreferences.xml",Context.MODE_PRIVATE).getString("impetus_url","http://localhost:5000/");
     }
 
     /**
