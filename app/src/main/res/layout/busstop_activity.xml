@@ -6,74 +6,123 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/confirm_busstop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="540dp"
-        android:onClick="showBusStop"
-        android:text="@string/confirm_BusStop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="@string/confirm_BusStop" />
-
-    <EditText
-        android:id="@+id/busStopInput"
-        android:layout_width="241dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="540dp"
-        android:ems="10"
-        android:text="@string/inputBusStop_BusStop"
-        app:layout_constraintBottom_toTopOf="@+id/confirm_busstop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/confirm_busstop"
-        app:layout_constraintHorizontal_bias="0.411"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.003" />
-
-    <TableLayout
-        android:id="@+id/Table"
-        android:layout_width="393dp"
-        android:layout_height="524dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="16dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confirm_busstop"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        <TableLayout
+            android:id="@+id/table"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
 
-        </TableRow>
+            <TableRow>
 
-        <TableRow/>
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_column="0"
+                    android:layout_weight="1"
+                    android:text="BusStop Name"
+                    android:textStyle="bold" />
 
-        <TableRow/>
+                <TextView
+                    android:layout_width="30dp"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:text="Time"
+                    android:textStyle="bold"></TextView>
 
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"/>
+                <TextView
+                    android:layout_width="30dp"
+                    android:layout_column="2"
+                    android:layout_weight="1"
+                    android:text="Service"
+                    android:textStyle="bold"></TextView>
+            </TableRow>
 
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"/>
+            <ScrollView android:layout_height="318dp">
 
-    </TableLayout>
+                <TableLayout
+                    android:id="@+id/score_table"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+
+                    <TableRow android:layout_height="match_parent" />
+                </TableLayout>
+            </ScrollView>
+        </TableLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="381dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Spinner
+            android:id="@+id/spinner_busstop"
+            android:layout_width="80dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="66dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/busStopInput" />
+
+        <EditText
+            android:id="@+id/busStopInput"
+            android:layout_width="0dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="16dp"
+            android:ems="10"
+            android:hint="@string/inputBusStop_BusStop"
+            app:layout_constraintBottom_toTopOf="@+id/spinner_busstop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/confirm_busstop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="131dp"
+            android:layout_marginTop="38dp"
+            android:layout_marginEnd="16dp"
+            android:onClick="showBusStop"
+            android:text="@string/confirm_BusStop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/spinner_busstop"
+            app:layout_constraintTop_toBottomOf="@+id/busStopInput"
+            tools:text="@string/confirm_BusStop" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

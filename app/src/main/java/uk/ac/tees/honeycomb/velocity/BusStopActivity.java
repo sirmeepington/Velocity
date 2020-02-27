@@ -1,5 +1,6 @@
 package uk.ac.tees.honeycomb.velocity;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -28,7 +29,7 @@ public class BusStopActivity extends AppCompatActivity {
 
 
 
-        TableLayout tb = (TableLayout) findViewById(R.id.Table);
+        TableLayout tb = (TableLayout) findViewById(R.id.score_table);
         tb.removeAllViews();
         TableRow[] rows1 = new TableRow[5];
         TableRow[] rows2 = new TableRow[5];
@@ -39,36 +40,37 @@ public class BusStopActivity extends AppCompatActivity {
 
         String[] textArray1 = {"Tower", "TCollegeroad", "Priston piece", "bustop1","bustop2"};
         String[] textArray2 = {"10:14", "10:30", "10:44", "10:50","10:58"};
+        String[] textArray3 = {"Arriva","StageCoach" ,"Arriva","megaBus","National Holidays"};
         TextView[] t = new TextView[5];
         TextView[] t2 = new TextView[5];
+        TextView[] t3 = new TextView[5];
         TableRow bus = new TableRow(this);
 
-        TextView bust = new TextView(this);
-        TextView timet = new TextView(this);
-        timet.setText("Time");
-        bust.setText("BusStop");
 
-
-        bus.addView(timet);
-        bus.addView(bust);
-        bus.setPaddingRelative(200,0,100,400);
+      //  bus.setPaddingRelative(200,0,100,400);
         tb.addView(bus);
-        for (int i = 0; i < 5; i++) {
-            rows1[i] = new TableRow(this);
+        for(int j = 0;j<6;j++) {
+            for (int i = 0; i < 5; i++) {
+                rows1[i] = new TableRow(this);
 
-            rows2[i] = new TableRow(this);
+                rows2[i] = new TableRow(this);
 
-            t[i] = new TextView(this);
-            t2[i] = new TextView(this);
-            t[i].setText(textArray1[i]);
-            t2[i].setText(textArray2[i]);
-            rows1[i].addView(t[i]);
-            rows1[i].setPadding(100, 10, 250, 0);
-            rows1[i].addView(t2[i]);
+                t[i] = new TextView(this);
+                t2[i] = new TextView(this);
+                t3[i] = new TextView(this);
+                t[i].setText(textArray1[i]);
+                t2[i].setText(textArray2[i]);
+                t3[i].setText(textArray3[i]);
+               t2[i].setPadding(300, 0, 0, 0);
+                t3[i].setPadding(60, 0, 0, 0);
+                rows1[i].addView(t[i]);
+                // rows1[i].setPadding(100, 10, 250, 0);
+                rows1[i].addView(t2[i]);
+                rows1[i].addView(t3[i]);
+                tb.addView(rows1[i]);
 
-            tb.addView(rows1[i]);
 
-
+            }
         }
 
     }
