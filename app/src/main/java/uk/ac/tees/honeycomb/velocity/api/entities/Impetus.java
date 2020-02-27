@@ -56,7 +56,11 @@ public class Impetus {
         return context.getSharedPreferences("impetuspreferences.xml",Context.MODE_PRIVATE).getString("impetus_url","http://152.105.67.114:5000");
     }
 
-
+    /**
+     * Creates basic HTTP GET request query parameters from a {@link HashMap}.
+     * @param params The parameters in the order of key + value.
+     * @return The query parameter string.
+     */
     public static String createQueryParams(HashMap<String,String> params){
         boolean first = true;
         StringBuilder sb = new StringBuilder();

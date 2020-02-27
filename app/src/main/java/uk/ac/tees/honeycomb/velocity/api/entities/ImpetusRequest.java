@@ -25,8 +25,4 @@ public class ImpetusRequest<T> extends GsonRequest<T> {
         super(url, responseType, HEADERS, listener,errorListener);
     }
 
-    private void getTypeFromT(){
-
-    }
-
 }

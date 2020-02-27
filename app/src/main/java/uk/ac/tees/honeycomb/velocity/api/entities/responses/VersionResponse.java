@@ -6,8 +6,10 @@ package uk.ac.tees.honeycomb.velocity.api.entities.responses;
  */
 public class VersionResponse {
 
-
-    String version;
+    /**
+     * The version string returned from Impetus.
+     */
+    private String version;
 
     /**
      * Returns the version string given from the back-end system.

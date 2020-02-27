@@ -9,11 +9,11 @@ public class ImpetusResponse<T> {
     /**
      * The message that the system has returned to the user.
      */
-    T message;
+    private T message;
     /**
      * The HTTP status as a string that has been returned.
      */
-    String status;
+    private String status;
 
     /**
      * Returns the HTTP status from the response.

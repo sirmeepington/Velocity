@@ -14,14 +14,17 @@ import uk.ac.tees.honeycomb.velocity.api.entities.responses.ImpetusResponse;
  * constructor's parameters.
  * @param <T> The response type from this request.
  */
-public abstract class ImpetusEndpoint<T> {
+public abstract class Endpoint<T> {
     /**
      * The application context to be passed when using the endpoint.
      */
     protected final Context context;
+    /**
+     * The endpoint's HTTP URL.
+     */
     protected final String endpoint;
 
-    ImpetusEndpoint(Context context, String endpoint){
+    Endpoint(Context context, String endpoint){
         this.context = context;
         this.endpoint = endpoint;
     }
