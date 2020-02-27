@@ -3,9 +3,8 @@ package uk.ac.tees.honeycomb.velocity.api.entities.endpoints;
 import android.content.Context;
 
 import com.android.volley.Response;
-import com.google.gson.reflect.TypeToken;
 
-import uk.ac.tees.honeycomb.velocity.api.entities.Impetus;
+import uk.ac.tees.honeycomb.velocity.api.Impetus;
 import uk.ac.tees.honeycomb.velocity.api.entities.responses.ImpetusResponse;
 
 /**
@@ -13,6 +12,7 @@ import uk.ac.tees.honeycomb.velocity.api.entities.responses.ImpetusResponse;
  * Note: Implementing members <b>MUST</b> have {@code (Context context, String[] params)} as its
  * constructor's parameters.
  * @param <T> The response type from this request.
+ * @author Aidan
  */
 public abstract class Endpoint<T> {
     /**
@@ -22,7 +22,7 @@ public abstract class Endpoint<T> {
     /**
      * The endpoint's HTTP URL.
      */
-    protected final String endpoint;
+    final String endpoint;
 
     Endpoint(Context context, String endpoint){
         this.context = context;

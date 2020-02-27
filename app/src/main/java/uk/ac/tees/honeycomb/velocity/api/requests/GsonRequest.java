@@ -1,4 +1,4 @@
-package uk.ac.tees.honeycomb.velocity.api.entities;
+package uk.ac.tees.honeycomb.velocity.api.requests;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
@@ -31,7 +31,7 @@ public class GsonRequest<T> extends Request<T> {
      * @param url URL of the request to make
      * @param headers Map of request headers
      */
-    public GsonRequest(String url, TypeToken token, Map<String, String> headers,
+    GsonRequest(String url, TypeToken token, Map<String, String> headers,
                        Response.Listener<T> listener, Response.ErrorListener errorListener) {
         super(Method.GET, url, errorListener);
         this.headers = headers;

@@ -8,6 +8,7 @@ import uk.ac.tees.honeycomb.velocity.stops.NaptanBusStop;
 /**
  * A response given by running the endpoint
  * {@link uk.ac.tees.honeycomb.velocity.api.entities.endpoints.StopByName}.
+ * @author Aidan
  */
 public class StopByNameResponse {
 
@@ -29,6 +30,11 @@ public class StopByNameResponse {
         return data;
     }
 
+    /**
+     * Returns the name of the source for this data. This should be NapTAN for bus stop data as
+     * it is updated regularly and is cached on the back-end system.
+     * @return The name of source for the data.
+     */
     public String getDataSource(){
         return from;
     }

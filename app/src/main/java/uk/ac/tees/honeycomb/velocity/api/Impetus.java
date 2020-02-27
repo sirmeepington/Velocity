@@ -1,4 +1,4 @@
-package uk.ac.tees.honeycomb.velocity.api.entities;
+package uk.ac.tees.honeycomb.velocity.api;
 
 import android.content.Context;
 
@@ -9,15 +9,19 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
+import uk.ac.tees.honeycomb.velocity.api.requests.ImpetusRequest;
+
 /**
  * A singleton class for accessing RequestQueues for Impetus requests.
  * @see ImpetusRequest
+ * @author Aidan
  */
 public class Impetus {
 
     private static Impetus instance;
     private RequestQueue requestQueue;
-    private final Context context;
+    private final Context context;// BE CAREFUL OF USING ANDROID CONTEXT IN A STATIC CONTEXT.
+                                  // POTENTIAL MEMORY LEAK IF DONE WRONG.
 
 
     private Impetus(Context context) {
@@ -31,7 +35,7 @@ public class Impetus {
      * @param c The context to access Impetus from.
      * @return An instance of Impetus.
      */
-    public static Impetus getInstance(Context c){
+    public synchronized static Impetus getInstance(Context c){
         // Initialise context before constructor to ensure that we have a volley
         // request queue available.
         if (instance == null)

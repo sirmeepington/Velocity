@@ -3,6 +3,7 @@ package uk.ac.tees.honeycomb.velocity.api.entities.responses;
 /**
  * The root-level response layout for Impetus requests.
  * The generic argument {@link T} signifies the data type in {@code message}.
+ * @author Aidan
  */
 public class ImpetusResponse<T> {
 

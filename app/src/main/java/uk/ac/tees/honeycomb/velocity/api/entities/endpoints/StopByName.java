@@ -5,13 +5,14 @@ import android.content.Context;
 import com.android.volley.Response;
 import com.google.gson.reflect.TypeToken;
 
-import uk.ac.tees.honeycomb.velocity.api.entities.Impetus;
-import uk.ac.tees.honeycomb.velocity.api.entities.ImpetusRequest;
+import uk.ac.tees.honeycomb.velocity.api.Impetus;
+import uk.ac.tees.honeycomb.velocity.api.requests.ImpetusRequest;
 import uk.ac.tees.honeycomb.velocity.api.entities.responses.ImpetusResponse;
 import uk.ac.tees.honeycomb.velocity.api.entities.responses.StopByNameResponse;
 
 /**
  * Gets the stops that have the name Town name, Locality name, or Stop name.
+ * @author Aidan
  */
 public class StopByName extends Endpoint<StopByNameResponse> {
 

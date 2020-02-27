@@ -3,6 +3,7 @@ package uk.ac.tees.honeycomb.velocity.api.entities.responses;
 
 /**
  * A response from the Impetus endpoint of {@code /} or {@code /impetus/version/}.
+ * @author Aidan
  */
 public class VersionResponse {
 
