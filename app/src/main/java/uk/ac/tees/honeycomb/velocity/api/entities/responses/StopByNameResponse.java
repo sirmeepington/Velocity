@@ -31,7 +31,7 @@ public class StopByNameResponse {
      * Returns the stop data list.
      * @return A list of stops that match the name given.
      */
-    public List<NaptanBusStop> getStops(){
+    public List<NaptanBusStop> getData(){
         return data;
     }
 

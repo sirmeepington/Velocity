@@ -181,4 +181,9 @@ public class NaptanBusStop implements BusStop {
     public String getTimingStatus() {
         return TimingStatus;
     }
+
+    @Override
+    public String toString(){
+        return "NapTAN Bus Stop: ("+getAtcoCode()+") - "+getName()+" - "+getLocality();
+    }
 }

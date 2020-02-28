@@ -10,6 +10,10 @@ import uk.ac.tees.honeycomb.velocity.api.entities.responses.ImpetusResponse;
 import uk.ac.tees.honeycomb.velocity.api.entities.responses.StopByCoordsResponse;
 import uk.ac.tees.honeycomb.velocity.api.requests.ImpetusRequest;
 
+/**
+ * Gets bus stops from coordinates specified.
+ * @author Aidan
+ */
 public class StopByCoords extends Endpoint<StopByCoordsResponse> {
 
     public StopByCoords(Context context, double latitude, double longitude) {
