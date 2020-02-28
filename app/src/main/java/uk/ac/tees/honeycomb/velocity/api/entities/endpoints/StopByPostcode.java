@@ -14,6 +14,7 @@ import uk.ac.tees.honeycomb.velocity.api.requests.ImpetusRequest;
  * An endpoint to gather bus stops around the location of a postcode. Not ON the postcode's street.
  * Uses postcodes.io to gather postcode information; and as such the data sources includes both
  * postcodes.io and NapTAN.
+ * @author Aidan
  */
 public class StopByPostcode extends Endpoint<StopByPostcodeResponse> {
 
