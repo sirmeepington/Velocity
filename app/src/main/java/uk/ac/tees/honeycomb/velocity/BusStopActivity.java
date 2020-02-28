@@ -38,7 +38,7 @@ public class BusStopActivity extends AppCompatActivity {
         TextView test = new TextView(this);
         test.setText("Time");
 
-        String[] textArray1 = {"Tower", "TCollegeroad", "Priston piece", "bustop1","bustop2"};
+        String[] textArray1 = {"8", "5A", "10", "14","62A"};
         String[] textArray2 = {"10:14", "10:30", "10:44", "10:50","10:58"};
         String[] textArray3 = {"Arriva","StageCoach" ,"Arriva","megaBus","National Holidays"};
         TextView[] t = new TextView[5];
@@ -61,7 +61,7 @@ public class BusStopActivity extends AppCompatActivity {
                 t[i].setText(textArray1[i]);
                 t2[i].setText(textArray2[i]);
                 t3[i].setText(textArray3[i]);
-               t2[i].setPadding(300, 0, 0, 0);
+               t2[i].setPadding(290, 0, 0, 0);
                 t3[i].setPadding(60, 0, 0, 0);
                 rows1[i].addView(t[i]);
                 // rows1[i].setPadding(100, 10, 250, 0);
