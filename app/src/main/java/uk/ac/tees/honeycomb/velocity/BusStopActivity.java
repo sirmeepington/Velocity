@@ -1,14 +1,31 @@
 package uk.ac.tees.honeycomb.velocity;
 
+import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import uk.ac.tees.honeycomb.velocity.api.entities.endpoints.StopByName;
+import uk.ac.tees.honeycomb.velocity.api.entities.responses.ImpetusResponse;
+import uk.ac.tees.honeycomb.velocity.api.entities.responses.StopByNameResponse;
+import uk.ac.tees.honeycomb.velocity.stops.NaptanBusStop;
 
 public class BusStopActivity extends AppCompatActivity {
 
@@ -18,21 +35,67 @@ public class BusStopActivity extends AppCompatActivity {
         setContentView(R.layout.busstop_activity);
     }
 
-    private void addingToCD(){
-
-    }
 
     public void showBusStop(View view)
     {
-        EditText editText = (EditText) findViewById(R.id.busStopInput);
-        String message = editText.getText().toString();
+        final Spinner choices = (Spinner) findViewById(R.id.spinner_busstop);
+
+final Object type = this;
+        final EditText editText = (EditText) findViewById(R.id.busStopInput);
+        final String message = editText.getText().toString();
+
+        final StopByName SBN = new StopByName(this,message);
+        editText.setHint("Loading");
+        editText.setText("");
+
+        SBN.query(
+                new Response.Listener<ImpetusResponse<StopByNameResponse>>() {
+                    @Override
+                    public void onResponse(ImpetusResponse<StopByNameResponse> response) {
+                        Log.d("Velocity",response.getMessage().getDataSource());
+                        List<NaptanBusStop> stops = response.getMessage().getData();
+                        if (stops == null){
+                            Log.d("Velocity","No values found.");
+                            return;
+                        }
+                        ArrayList<String> arrayList = new ArrayList<>();
+                        for (NaptanBusStop stop : stops) {
+                            Log.d("Velocity Result", stop.getName());
+
+                            arrayList.add(stop.getName() + " " + stop.getLocality());
+
+                        }
+                        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>((Context) type, android.R.layout.simple_spinner_item, arrayList);
+                        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        choices.setAdapter(arrayAdapter);
+                        choices.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
+
+                            }
+                        });
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("Velocity", "Error"+error);
+                    }
+                });
 
 
 
-        TableLayout tb = (TableLayout) findViewById(R.id.score_table);
+//editText.setText(list.get(list.size()).toString());
+
+     /*
         tb.removeAllViews();
-        TableRow[] rows1 = new TableRow[5];
-        TableRow[] rows2 = new TableRow[5];
+
       //  TableRow tr = (TableRow) findViewById(R.id.tr1);
 
         TextView test = new TextView(this);
@@ -41,8 +104,7 @@ public class BusStopActivity extends AppCompatActivity {
         String[] textArray1 = {"8", "5A", "10", "14","62A"};
         String[] textArray2 = {"10:14", "10:30", "10:44", "10:50","10:58"};
         String[] textArray3 = {"Arriva","StageCoach" ,"Arriva","megaBus","National Holidays"};
-        TextView[] t = new TextView[5];
-        TextView[] t2 = new TextView[5];
+
         TextView[] t3 = new TextView[5];
         TableRow bus = new TableRow(this);
 
@@ -71,7 +133,7 @@ public class BusStopActivity extends AppCompatActivity {
 
 
             }
-        }
+        }*/
 
     }
 }
