@@ -20,7 +20,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import uk.ac.tees.honeycomb.velocity.api.entities.endpoints.StopByName;
 import uk.ac.tees.honeycomb.velocity.api.entities.responses.ImpetusResponse;
@@ -29,8 +31,9 @@ import uk.ac.tees.honeycomb.velocity.stops.NaptanBusStop;
 
 public class BusStopActivity extends AppCompatActivity {
 
-    ArrayList<String> ATCOCode = new ArrayList<>();
-    ArrayList<String> busStopNames = new ArrayList<>();
+
+    HashMap<String,String> loadedStops = new HashMap<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +45,7 @@ public class BusStopActivity extends AppCompatActivity {
     {
         final Spinner choices = (Spinner) findViewById(R.id.spinner_busstop);
 
-final Object type = this;
+        final Context type = this;
         final EditText busStopInput = (EditText) findViewById(R.id.busStopInput);
         final String message = busStopInput.getText().toString();
 
@@ -56,25 +59,23 @@ final Object type = this;
                     public void onResponse(ImpetusResponse<StopByNameResponse> response) {
                         Log.d("Velocity",response.getMessage().getDataSource());
                         busStopInput.setHint("Loaded Successfully");
-                        List<NaptanBusStop> stops = response.getMessage().getData();
+                        final List<NaptanBusStop> stops = response.getMessage().getData();
                         if (stops == null){
                             Log.d("Velocity","No values found.");
                             busStopInput.setHint("Error. Stop Name Does Not Exist");
                             return;
                         }
 
-                        if(!ATCOCode.isEmpty()) {
-                            ATCOCode.removeAll(ATCOCode);
-                            busStopNames.removeAll(busStopNames);
+                        if(!loadedStops.isEmpty()) {
+                            loadedStops.clear();
                         }
                         for (NaptanBusStop stop : stops) {
                             Log.d("Velocity Result", stop.getName());
 
-                            busStopNames.add(stop.getName() + " " + stop.getLocality());
-                           ATCOCode.add(stop.getAtcoCode());
-
+                            loadedStops.put(stop.getAtcoCode().toLowerCase(),stop.getName() + " - " + stop.getLocality());
                         }
-                        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>((Context) type, android.R.layout.simple_spinner_item, busStopNames);
+
+                        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(type, android.R.layout.simple_spinner_item, new ArrayList<>(loadedStops.values()));
                         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         choices.setAdapter(arrayAdapter);
                         choices.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -82,9 +83,9 @@ final Object type = this;
                             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                                 TableLayout tb = (TableLayout) findViewById(R.id.score_table);
                                 tb.removeAllViews();
-                                TableRow tr = new TableRow((Context) type);
-                                TextView test = new TextView((Context) type);
-                                test.setText(ATCOCode.get(position).toString());
+                                TableRow tr = new TableRow(type);
+                                TextView test = new TextView(type);
+                                test.setText(getStopAtPos(position).getKey());
                                 tr.addView(test);
                                 tb.addView(tr);
                             }
@@ -105,6 +106,17 @@ final Object type = this;
 
                 });
 
+    }
+
+    private Map.Entry<String,String> getStopAtPos(int pos){
+        int i = 0;
+        for(Map.Entry<String,String> entry : loadedStops.entrySet()){
+            if (i == pos){
+                return entry;
+            }
+            i++;
+        }
+        return null;
     }
 
     public void getTimesViaATCO()
