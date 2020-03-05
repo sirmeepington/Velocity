@@ -1,7 +1,11 @@
 package uk.ac.tees.honeycomb.velocity.stops;
 
+import java.util.ArrayList;
+
+import uk.ac.tees.honeycomb.velocity.api.entities.transportapi.Departure;
+import uk.ac.tees.honeycomb.velocity.api.entities.transportapi.DepartureContainer;
+import uk.ac.tees.honeycomb.velocity.api.entities.transportapi.Location;
 import uk.ac.tees.honeycomb.velocity.entities.Bearing;
-import uk.ac.tees.honeycomb.velocity.entities.Location;
 
 /**
  * Class to interact with the TransportApi api to request and retrieve data.
@@ -9,15 +13,13 @@ import uk.ac.tees.honeycomb.velocity.entities.Location;
  */
 public class TransportBusStop implements BusStop {
 
-    private String atcoCode;
+    private String atcocode;
 
-    private String smsCode;
+    private String smscode;
 
     private String name;
 
-    private String stopName;
-
-    private Location location;
+    private String stop_name;
 
     private Bearing bearing;
 
@@ -25,9 +27,9 @@ public class TransportBusStop implements BusStop {
 
     private String locality;
 
-    public TransportBusStop() {
+    private Location location;
 
-    }
+    private DepartureContainer departures;
 
     /**
      * Accessor method for the Bus Stop identifier for use with Transport API and Naptan Database.
@@ -36,7 +38,7 @@ public class TransportBusStop implements BusStop {
      */
     @Override
     public String getAtcoCode() {
-        return atcoCode;
+        return atcocode;
     }
 
     /**
@@ -46,7 +48,7 @@ public class TransportBusStop implements BusStop {
      */
     @Override
     public String getSmsCode() {
-        return smsCode;
+        return smscode;
     }
 
     /**
@@ -60,14 +62,12 @@ public class TransportBusStop implements BusStop {
     }
 
     /**
-     * Accessor method for the Latitude and Longitude values for the Bus stop.
+     * Accessor method for the name of the Bus stop.
      *
-     * @return Location class containing Latitude and Longitude.
+     * @return Name of the Bus stop.
      */
-    @Override
-    public Location getLocation() {
-        return location;
-    }
+    public String getStopName() { return stop_name; }
+
 
     /**
      * Accessor method for the Bearing of the Bus stop.
@@ -100,9 +100,21 @@ public class TransportBusStop implements BusStop {
     }
 
     /**
-     * Accessor method for the name of the Bus stop.
+     * Accessor method for the Latitude and Longitude values for the Bus stop.
      *
-     * @return Name of the Bus stop.
+     * @return Location class containing Latitude and Longitude.
      */
-    public String getStopName() { return stopName; }
+    @Override
+    public uk.ac.tees.honeycomb.velocity.entities.Location getLocation() {
+        return new uk.ac.tees.honeycomb.velocity.entities.Location(location);
+    }
+
+    /**
+     * Accessor method for the departures of the Bus stop.
+     *
+     * @return ArrayList of all the departures.
+     */
+    public ArrayList<Departure> getDepartures() {
+        return departures.getDepartures();
+    }
 }
