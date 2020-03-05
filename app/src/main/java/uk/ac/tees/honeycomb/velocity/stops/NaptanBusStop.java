@@ -1,10 +1,7 @@
 package uk.ac.tees.honeycomb.velocity.stops;
 
-import android.location.Location;
-import android.os.strictmode.NonSdkApiUsedViolation;
-
 import uk.ac.tees.honeycomb.velocity.entities.Bearing;
-import uk.ac.tees.honeycomb.velocity.entities.Locations;
+import uk.ac.tees.honeycomb.velocity.entities.Location;
 
 /**
  * Class to interact with the NapTAN API to request and retrieve data.
@@ -94,15 +91,15 @@ public class NaptanBusStop implements BusStop {
     /**
      * Accessor method for the Latitude and Longitude values for the Bus stop.
      *
-     * @return Locations class containing Latitude and Longitude.
+     * @return Location class containing Latitude and Longitude.
      */
     @Override
-    public Locations getLocation() {
+    public Location getLocation() {
 
         try {
             double longitude = Double.parseDouble(Longitude);
             double latitude = Double.parseDouble(Latitude);
-            return new Locations(longitude,latitude);
+            return new Location(longitude,latitude);
         } catch (NumberFormatException ex){
             return null;
         }

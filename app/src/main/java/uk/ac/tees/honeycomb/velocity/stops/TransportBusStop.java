@@ -1,7 +1,7 @@
 package uk.ac.tees.honeycomb.velocity.stops;
 
 import uk.ac.tees.honeycomb.velocity.entities.Bearing;
-import uk.ac.tees.honeycomb.velocity.entities.Locations;
+import uk.ac.tees.honeycomb.velocity.entities.Location;
 
 /**
  * Class to interact with the TransportApi api to request and retrieve data.
@@ -17,7 +17,7 @@ public class TransportBusStop implements BusStop {
 
     private String stopName;
 
-    private Locations location;
+    private Location location;
 
     private Bearing bearing;
 
@@ -62,10 +62,10 @@ public class TransportBusStop implements BusStop {
     /**
      * Accessor method for the Latitude and Longitude values for the Bus stop.
      *
-     * @return Locations class containing Latitude and Longitude.
+     * @return Location class containing Latitude and Longitude.
      */
     @Override
-    public Locations getLocation() {
+    public Location getLocation() {
         return location;
     }
 
