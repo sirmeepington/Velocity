@@ -1,7 +1,7 @@
 package uk.ac.tees.honeycomb.velocity.stops;
 
 import uk.ac.tees.honeycomb.velocity.entities.Bearing;
-import uk.ac.tees.honeycomb.velocity.entities.Locations;
+import uk.ac.tees.honeycomb.velocity.entities.Location;
 
 public interface BusStop {
 
@@ -29,9 +29,9 @@ public interface BusStop {
     /**
      * Accessor method for the Latitude and Longitude values for the Bus stop.
      *
-     * @return Locations class containing Latitude and Longitude.
+     * @return Location class containing Latitude and Longitude.
      */
-    Locations getLocation();
+    Location getLocation();
 
     /**
      * Accessor method for the Bearing of the Bus stop.

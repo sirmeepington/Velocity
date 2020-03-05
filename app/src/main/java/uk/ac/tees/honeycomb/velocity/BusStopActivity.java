@@ -35,17 +35,13 @@ import uk.ac.tees.honeycomb.velocity.stops.NaptanBusStop;
 
 public class BusStopActivity extends AppCompatActivity {
 
-
     HashMap<String,String> loadedStops = new HashMap<>();
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.busstop_activity);
     }
-
 
 public void redirectButton(View view)
 {
