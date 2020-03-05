@@ -71,11 +71,8 @@ public void redirectButton(View view)
 public boolean validatePostCode(String postCode)
 {
     Pattern pattern = Pattern.compile("([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\\s?[0-9][A-Za-z]{2})");
-   if(!pattern.matcher(postCode).matches())
-   {
-       return false;
-   }
-    return true;
+   return pattern.matcher(postCode).matches();
+
 }
 public void showBusStopsViaPostCode(View view)
     {
