@@ -23,10 +23,10 @@ public class StopTimetable extends Endpoint<BusStopTimetableResponse> {
     @Override
     public void query(Response.Listener<ImpetusResponse<BusStopTimetableResponse>> listener, Response.ErrorListener errorListener) {
         ImpetusRequest<ImpetusResponse<BusStopTimetableResponse>> request = new ImpetusRequest<>(
-          getFullUrl(),
-          new TypeToken<ImpetusResponse<BusStopTimetableResponse>>(){},
-          listener,
-          errorListener
+            getFullUrl(),
+            new TypeToken<ImpetusResponse<BusStopTimetableResponse>>(){},
+            listener,
+            errorListener
         );
         Impetus.getInstance(context).addRequest(request);
     }
