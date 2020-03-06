@@ -1,17 +1,20 @@
 package uk.ac.tees.honeycomb.velocity.entities;
 
-import org.xml.sax.helpers.LocatorImpl;
-
 /**
  * Class to hold the longitude and latitude supplied by or given to the API for easier usage.
  */
-public class Locations {
+public class Location {
     private final double longitude;
     private final double latitude;
 
-    public Locations(double longitude, double latitude){
+    public Location(double longitude, double latitude){
         this.longitude = longitude;
         this.latitude = latitude;
+    }
+
+    public Location(uk.ac.tees.honeycomb.velocity.api.entities.transportapi.Location location){
+        this.longitude = location.getLocation().longitude;
+        this.latitude = location.getLocation().latitude;
     }
 
     /**
