@@ -19,7 +19,7 @@ public class StopTimetable {
     private String smscode;
     private String source;
     private String stop_name;
-    private DepartureContainer departures;
+    private ArrayList<Departure> departures;
 
     /**
      * Returns the ATCO code for the stop whose timetable this is.
@@ -103,6 +103,6 @@ public class StopTimetable {
      * @return A list of departures.
      */
     public ArrayList<Departure> getDepartures() {
-        return departures.getDepartures();
+        return departures;
     }
 }

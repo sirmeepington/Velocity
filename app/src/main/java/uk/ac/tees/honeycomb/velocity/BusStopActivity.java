@@ -140,7 +140,7 @@ public class BusStopActivity extends AppCompatActivity {
                     Log.d("Velocity", response.getMessage().getDataSource());
                     busStopInput.setHint("Loaded Successfully");
                     final List<NaptanBusStop> stops = response.getMessage().getData();
-                    if (stops == null) {
+                    if (stops == null || stops.isEmpty()) {
                         Log.d("Velocity", "No values found.");
                         busStopInput.setHint("Error. Stop Name Does Not Exist");
                         return;
@@ -190,11 +190,10 @@ public class BusStopActivity extends AppCompatActivity {
             new Response.Listener<ImpetusResponse<BusStopTimetableResponse>>() {
                 @Override
                 public void onResponse(final ImpetusResponse<BusStopTimetableResponse> response) {
-                    Log.d("Velocity", response.getMessage().getStopTimetable().toString());
                     ArrayList<Departure> departures = response.getMessage().getStopTimetable().getDepartures();
                     TableLayout tb = findViewById(R.id.score_table);
                     tb.removeAllViews();
-                    if (departures == null){
+                    if (departures == null || departures.isEmpty()){
                         AddRow(type,tb,"No Departures Listed.");
                         return;
                     }
