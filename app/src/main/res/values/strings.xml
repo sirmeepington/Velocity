@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Velocity</string>
+    <string name="confirm_BusStop">Confirm</string>
+    <string name="inputBusStop_BusStop">Input BusStop</string>
+    <string name="plnT_from">From</string>
+    <string name="plnT_to">To</string>
+    <string name="journey_planner_button_redirect">Journey Planner</string>
+    <string name="line_timetable_button_redirect">Line Timetable</string>
+    <string name="options_button_redirect">Options</string>
+    <string name="bus_stop_button_redirect">Bus Stops</string>
+    <string name="map_button_redirect">Map</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="google_maps_key">Google Maps</string>
+    <string-array name="naptan_BusStop">
+    </string-array>
+
 </resources>
