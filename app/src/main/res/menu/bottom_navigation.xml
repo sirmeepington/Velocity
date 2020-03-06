@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/home" />
+
+    <item
+        android:id="@+id/nav_bus_stop"
+        android:icon="@drawable/ic_directions_bus_black_24dp"
+        android:title="@string/stop_timetable" />
+
+    <item
+        android:id="@+id/nav_journey"
+        android:icon="@drawable/ic_assistant_photo_black_24dp"
+        android:title="@string/journey_planner" />
+
+    <item android:id="@+id/nav_map"
+        android:icon="@drawable/ic_location_on_black_24dp"
+        android:title="@string/map"/>
+</menu>

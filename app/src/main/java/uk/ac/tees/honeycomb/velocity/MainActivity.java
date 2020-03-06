@@ -3,10 +3,13 @@ package uk.ac.tees.honeycomb.velocity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity
+import uk.ac.tees.honeycomb.velocity.fragments.MainFragment;
+
+public class MainActivity extends AppCompatActivity implements MainFragment.OnFragmentInteractionListener
 {
 
     @Override
@@ -38,5 +41,10 @@ public class MainActivity extends AppCompatActivity
     {
         Intent intent = new Intent(this, OptionsActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }
