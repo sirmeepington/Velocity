@@ -1,5 +1,9 @@
 package uk.ac.tees.honeycomb.velocity;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -17,6 +21,7 @@ import uk.ac.tees.honeycomb.velocity.fragments.MapsFragment;
 import uk.ac.tees.honeycomb.velocity.fragments.StopTimetableFragment;
 
 public class MainActivity extends FragmentActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
