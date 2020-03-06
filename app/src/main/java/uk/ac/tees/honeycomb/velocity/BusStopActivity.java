@@ -1,7 +1,6 @@
 package uk.ac.tees.honeycomb.velocity;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,7 +14,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
@@ -26,13 +24,11 @@ import java.util.regex.Pattern;
 
 import uk.ac.tees.honeycomb.velocity.api.entities.endpoints.StopByName;
 import uk.ac.tees.honeycomb.velocity.api.entities.endpoints.StopByPostcode;
-import uk.ac.tees.honeycomb.velocity.api.entities.endpoints.StopFromAtcoCode;
 import uk.ac.tees.honeycomb.velocity.api.entities.endpoints.StopTimetable;
 import uk.ac.tees.honeycomb.velocity.api.entities.responses.BusStopTimetableResponse;
 import uk.ac.tees.honeycomb.velocity.api.entities.responses.ImpetusResponse;
 import uk.ac.tees.honeycomb.velocity.api.entities.responses.StopByNameResponse;
 import uk.ac.tees.honeycomb.velocity.api.entities.responses.StopByPostcodeResponse;
-import uk.ac.tees.honeycomb.velocity.api.entities.responses.StopFromAtcoCodeResponse;
 import uk.ac.tees.honeycomb.velocity.api.entities.transportapi.Departure;
 import uk.ac.tees.honeycomb.velocity.stops.NaptanBusStop;
 
@@ -158,7 +154,9 @@ public class BusStopActivity extends AppCompatActivity {
                     choices.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            getTimesViaATCO(atco.get(position));
+                            String code = atco.get(position);
+                            Log.d("ATCO Code:",code);
+                            getTimesViaATCO(code);
                         }
 
                         @Override
@@ -195,7 +193,7 @@ public class BusStopActivity extends AppCompatActivity {
                     }
 
                     for(Departure departure : departures){
-                        AddRow(type,tb,departure.getLineName()+" by "+departure.getOperatorName()+" at "+departure.getAimedDepartureTime());
+                        AddRow(type,tb,departure.getLineName()+"                                    "+departure.getAimedDepartureTime()+"           "+departure.getOperatorName());
                     }
                 }
             },
