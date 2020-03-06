@@ -3,8 +3,6 @@ package uk.ac.tees.honeycomb.velocity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.os.PatternMatcher;
-import android.provider.Telephony;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,11 +19,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.regex.Pattern;
 
 import uk.ac.tees.honeycomb.velocity.api.entities.endpoints.StopByName;
