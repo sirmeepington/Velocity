@@ -15,7 +15,7 @@ public class JourneyPlannerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_journey_planner);
+        //setContentView(R.layout.activity_journey_planner);
     }
 
     public void jpConfirm(View view){
