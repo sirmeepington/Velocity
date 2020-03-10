@@ -1,6 +1,7 @@
 package uk.ac.tees.honeycomb.velocity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -9,7 +10,7 @@ import android.view.View;
 
 import uk.ac.tees.honeycomb.velocity.fragments.MainFragment;
 
-public class MainActivity extends AppCompatActivity implements MainFragment.OnFragmentInteractionListener
+public class MainActivity extends FragmentActivity implements MainFragment.OnFragmentInteractionListener
 {
 
     @Override
