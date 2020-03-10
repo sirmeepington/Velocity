@@ -11,9 +11,25 @@
             android:id="@+id/action_main_to_stop"
             app:destination="@id/stopTimetableFragment"
             app:enterAnim="@anim/fragment_open_enter" />
+        <action
+            android:id="@+id/goToMapFragment"
+            app:destination="@id/mapsFragment"
+            app:enterAnim="@anim/fragment_open_enter" />
+        <action
+            android:id="@+id/GoToOptionsFragment"
+            app:destination="@id/optionsFragment"
+            app:enterAnim="@anim/fragment_open_enter" />
     </fragment>
     <fragment
         android:id="@+id/stopTimetableFragment"
         android:name="uk.ac.tees.honeycomb.velocity.fragments.StopTimetableFragment"
         android:label="StopTimetableFragment" />
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="uk.ac.tees.honeycomb.velocity.fragments.MapsFragment"
+        android:label="MapsFragment" />
+    <fragment
+        android:id="@+id/optionsFragment"
+        android:name="uk.ac.tees.honeycomb.velocity.fragments.OptionsFragment"
+        android:label="OptionsFragment" />
 </navigation>
