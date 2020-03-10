@@ -22,6 +22,7 @@ import uk.ac.tees.honeycomb.velocity.R;
  * create an instance of this fragment.
  */
 public class MapsFragment extends Fragment {
+
     public MapsFragment() {
         // Required empty public constructor
     }
