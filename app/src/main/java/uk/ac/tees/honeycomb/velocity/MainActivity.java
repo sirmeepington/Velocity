@@ -5,6 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+<<<<<<< HEAD
+=======
+import android.view.View;
+import android.widget.Button;
+>>>>>>> Made some features, that scales text for users with bad eye sight. Needs some tweaks though
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -22,6 +27,8 @@ import uk.ac.tees.honeycomb.velocity.fragments.StopTimetableFragment;
 
 public class MainActivity extends FragmentActivity {
 
+
+    AccessibilitySettings copy = AccessibilitySettings.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
