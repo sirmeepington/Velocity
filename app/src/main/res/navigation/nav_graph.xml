@@ -8,15 +8,15 @@
         android:name="uk.ac.tees.honeycomb.velocity.fragments.MainFragment"
         android:label="fragment_main" >
         <action
-            android:id="@+id/action_main_to_stop"
+            android:id="@+id/mainToStopTimetable"
             app:destination="@id/stopTimetableFragment"
             app:enterAnim="@anim/fragment_open_enter" />
         <action
-            android:id="@+id/goToMapFragment"
+            android:id="@+id/mainToMap"
             app:destination="@id/mapsFragment"
             app:enterAnim="@anim/fragment_open_enter" />
         <action
-            android:id="@+id/GoToOptionsFragment"
+            android:id="@+id/mainToOptions"
             app:destination="@id/optionsFragment"
             app:enterAnim="@anim/fragment_open_enter" />
     </fragment>
