@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
+    app:startDestination="@id/stopTimetableFragment">
+
+    <fragment
+        android:id="@+id/fragment_main"
+        android:name="uk.ac.tees.honeycomb.velocity.fragments.MainFragment"
+        android:label="fragment_main" >
+        <action
+            android:id="@+id/mainToStopTimetable"
+            app:destination="@id/stopTimetableFragment"
+            app:enterAnim="@anim/fragment_open_enter" />
+        <action
+            android:id="@+id/mainToMap"
+            app:destination="@id/mapsFragment"
+            app:enterAnim="@anim/fragment_open_enter" />
+        <action
+            android:id="@+id/mainToOptions"
+            app:destination="@id/optionsFragment"
+            app:enterAnim="@anim/fragment_open_enter" />
+    </fragment>
+    <fragment
+        android:id="@+id/stopTimetableFragment"
+        android:name="uk.ac.tees.honeycomb.velocity.fragments.StopTimetableFragment"
+        android:label="StopTimetableFragment" />
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="uk.ac.tees.honeycomb.velocity.fragments.MapsFragment"
+        android:label="MapsFragment" />
+    <fragment
+        android:id="@+id/optionsFragment"
+        android:name="uk.ac.tees.honeycomb.velocity.fragments.OptionsFragment"
+        android:label="OptionsFragment" />
+</navigation>
