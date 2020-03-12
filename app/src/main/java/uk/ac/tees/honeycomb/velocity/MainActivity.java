@@ -18,6 +18,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
+
 
 import uk.ac.tees.honeycomb.velocity.fragments.JourneyPlannerFragment;
 import uk.ac.tees.honeycomb.velocity.fragments.MainFragment;
@@ -57,6 +59,10 @@ public class MainActivity extends FragmentActivity {
                     return false;
             }
         });
+
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavigationView navView = findViewById(R.id.nav_view);
+
     }
 
     private void load(Fragment fragment){
