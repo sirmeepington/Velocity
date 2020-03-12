@@ -12,7 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationMenu;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 
 import uk.ac.tees.honeycomb.velocity.fragments.MainFragment;
 import uk.ac.tees.honeycomb.velocity.fragments.MainFragmentDirections;
@@ -39,6 +39,10 @@ public class MainActivity extends FragmentActivity implements MainFragment.OnFra
             }
             return true;
         });
+
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavigationView navView = findViewById(R.id.nav_view);
+
     }
 
     public void redirectJourney(View view)
