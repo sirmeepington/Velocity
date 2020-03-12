@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
+import androidx.navigation.NavGraph;
 import androidx.navigation.Navigation;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationMenu;
@@ -29,13 +31,22 @@ public class MainActivity extends FragmentActivity implements MainFragment.OnFra
 
         NavController controller = Navigation.findNavController(this,R.id.nav_host_fragment);
         BottomNavigationView menu = findViewById(R.id.bottom_nav);
+
         menu.setOnNavigationItemSelectedListener(item -> {
+            if (controller.getCurrentDestination().getId() != R.id.fragment_main){
+                controller.navigate(R.id.fragment_main); // Go back to main for compatibility
+            }
             NavDirections dir = null;
             switch (item.getItemId()){
                 case R.id.nav_home:
-                    break;
+                    break; // Already gone back to main
+                case R.id.nav_bus_stop:
+                    dir = MainFragmentDirections.mainToStopTimetable();
                 default:
                     break;
+            }
+            if (dir != null){
+                controller.navigate(dir); // Go to the selected area.
             }
             return true;
         });
@@ -67,6 +78,5 @@ public class MainActivity extends FragmentActivity implements MainFragment.OnFra
 
     @Override
     public void onFragmentInteraction(Uri uri) {
-
     }
 }

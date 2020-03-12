@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
-    app:startDestination="@id/stopTimetableFragment">
+    app:startDestination="@id/fragment_main">
 
     <fragment
         android:id="@+id/fragment_main"
@@ -23,13 +23,25 @@
     <fragment
         android:id="@+id/stopTimetableFragment"
         android:name="uk.ac.tees.honeycomb.velocity.fragments.StopTimetableFragment"
-        android:label="StopTimetableFragment" />
+        android:label="StopTimetableFragment" >
+        <action
+            android:id="@+id/action_stopTimetableFragment_self"
+            app:destination="@id/stopTimetableFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mapsFragment"
         android:name="uk.ac.tees.honeycomb.velocity.fragments.MapsFragment"
-        android:label="MapsFragment" />
+        android:label="MapsFragment" >
+        <action
+            android:id="@+id/action_mapsFragment_self"
+            app:destination="@id/mapsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/optionsFragment"
         android:name="uk.ac.tees.honeycomb.velocity.fragments.OptionsFragment"
-        android:label="OptionsFragment" />
+        android:label="OptionsFragment" >
+        <action
+            android:id="@+id/action_optionsFragment_self"
+            app:destination="@id/optionsFragment" />
+    </fragment>
 </navigation>
