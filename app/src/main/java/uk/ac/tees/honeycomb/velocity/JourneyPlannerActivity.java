@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -30,6 +31,7 @@ import java.util.List;
 import uk.ac.tees.honeycomb.velocity.api.entities.endpoints.StopByName;
 import uk.ac.tees.honeycomb.velocity.api.entities.responses.ImpetusResponse;
 import uk.ac.tees.honeycomb.velocity.api.entities.responses.StopByNameResponse;
+import uk.ac.tees.honeycomb.velocity.entities.Locations;
 import uk.ac.tees.honeycomb.velocity.stops.NaptanBusStop;
 
 public class JourneyPlannerActivity extends AppCompatActivity {
@@ -78,7 +80,7 @@ public class JourneyPlannerActivity extends AppCompatActivity {
 
                             for(NaptanBusStop s : fromBusList){
                                 fromList.add(s.getName());
-                                fromListLonglat.add("Longlat: " + s.getLocation().getLongitude() + ", " + s.getLocation().getLatitude());
+                                fromListLonglat.add(makeLonLat(s.getLocation()));
                             }
                             final ArrayAdapter<String> fromBusAdapter = new ArrayAdapter<>(JourneyPlannerActivity.this, android.R.layout.simple_list_item_1, android.R.id.text1, fromList);
                             fromDisplayedBusList.setAdapter(fromBusAdapter);
@@ -113,7 +115,7 @@ public class JourneyPlannerActivity extends AppCompatActivity {
 
                     for (NaptanBusStop s: toBusList){
                         toList.add(s.getName());
-                        toListLongLat.add ("Longlat: " + s.getLocation().getLongitude() + ", " + s.getLocation().getLatitude());
+                        toListLongLat.add (makeLonLat(s.getLocation()));
                     }
                     final ArrayAdapter<String> toBusAdapter = new ArrayAdapter<>(JourneyPlannerActivity.this, android.R.layout.simple_list_item_1, android.R.id.text1,toList);
                     toDisplayedBusList.setAdapter(toBusAdapter);
@@ -145,6 +147,10 @@ public class JourneyPlannerActivity extends AppCompatActivity {
 
 
         }
+    }
+
+    private String makeLonLat(Locations location){
+        return String.format("lonlat:{0},{1}", location.getLongitude(), location.getLatitude());
     }
 
     public void jpSwitch (View view) {
