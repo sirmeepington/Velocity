@@ -4,7 +4,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
-import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -31,7 +30,7 @@ import java.util.List;
 import uk.ac.tees.honeycomb.velocity.api.entities.endpoints.StopByName;
 import uk.ac.tees.honeycomb.velocity.api.entities.responses.ImpetusResponse;
 import uk.ac.tees.honeycomb.velocity.api.entities.responses.StopByNameResponse;
-import uk.ac.tees.honeycomb.velocity.entities.Locations;
+import uk.ac.tees.honeycomb.velocity.entities.Location;
 import uk.ac.tees.honeycomb.velocity.stops.NaptanBusStop;
 
 public class JourneyPlannerActivity extends AppCompatActivity {
@@ -149,7 +148,7 @@ public class JourneyPlannerActivity extends AppCompatActivity {
         }
     }
 
-    private String makeLonLat(Locations location){
+    private String makeLonLat(Location location){
         return String.format("lonlat:{0},{1}", location.getLongitude(), location.getLatitude());
     }
 
