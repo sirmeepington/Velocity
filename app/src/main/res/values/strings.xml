@@ -13,5 +13,5 @@
     <string name="google_maps_key">Google Maps</string>
     <string-array name="naptan_BusStop">
     </string-array>
-
+    <string name="swap_switch">Switch</string>
 </resources>
