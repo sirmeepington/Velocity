@@ -6,14 +6,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
 
 import uk.ac.tees.honeycomb.velocity.fragments.JourneyPlannerFragment;
 import uk.ac.tees.honeycomb.velocity.fragments.MainFragment;
@@ -21,8 +19,6 @@ import uk.ac.tees.honeycomb.velocity.fragments.MapsFragment;
 import uk.ac.tees.honeycomb.velocity.fragments.StopTimetableFragment;
 
 public class MainActivity extends AppCompatActivity {
-
-    AccessibilitySettings copy = AccessibilitySettings.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -52,9 +48,6 @@ public class MainActivity extends AppCompatActivity {
                     return false;
             }
         });
-
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationView navView = findViewById(R.id.nav_view);
 
         Toolbar toolbar = findViewById(R.id.top_app_bar);
 
