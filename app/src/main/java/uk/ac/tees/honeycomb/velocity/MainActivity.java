@@ -21,12 +21,7 @@ import uk.ac.tees.honeycomb.velocity.fragments.MainFragment;
 import uk.ac.tees.honeycomb.velocity.fragments.MapsFragment;
 import uk.ac.tees.honeycomb.velocity.fragments.StopTimetableFragment;
 
-public class MainActivity extends FragmentActivity implements
-        MainFragment.OnFragmentInteractionListener,
-        StopTimetableFragment.OnFragmentInteractionListener,
-        JourneyPlannerFragment.OnFragmentInteractionListener,
-        MapsFragment.OnFragmentInteractionListener
-{
+public class MainActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -65,9 +60,4 @@ public class MainActivity extends FragmentActivity implements
         transaction.disallowAddToBackStack();
         transaction.commit();
     }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-    }
-
 }
