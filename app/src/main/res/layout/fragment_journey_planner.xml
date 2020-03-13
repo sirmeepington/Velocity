@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/jpToText"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".JourneyPlannerActivity">
@@ -11,10 +12,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:autoText="false"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/plnT_from"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,21 +26,31 @@
         android:id="@+id/jpConfirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="137dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
         android:onClick="jpConfirm"
-        android:text="Confirm"
-        app:layout_constraintStart_toEndOf="@+id/jpSwitch"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="@string/confirm_BusStop"
+        app:layout_constraintBottom_toTopOf="@+id/jpResults"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/jpTo"
+        app:layout_constraintVertical_bias="0.428" />
 
     <Button
         android:id="@+id/jpSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="94dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
         android:onClick="jpSwitch"
-        android:text="Switch"
+        android:text="@string/swap_switch"
+        app:layout_constraintBottom_toTopOf="@+id/jpTo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/jpFrom" />
 
@@ -45,10 +59,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/plnT_to"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/jpSwitch" />
 
@@ -65,8 +80,42 @@
         app:layout_constraintVertical_bias="0.174">
 
         <ListView
-            android:id="@+id/jpListView"
+            android:id="@+id/busStops"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></ListView>
+            android:layout_height="wrap_content" />
     </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/jpFromText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/plnT_from"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/jpFrom"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="132dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/plnT_to"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/jpTo"
+        app:layout_constraintTop_toBottomOf="@+id/jpFromText" />
+
+    <ListView
+        android:id="@+id/jpListView"
+        android:layout_width="411dp"
+        android:layout_height="366dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/jpResults" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
