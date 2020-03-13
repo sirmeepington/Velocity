@@ -32,5 +32,4 @@ public class OptionsFragment extends Fragment {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_options, container, false);
     }
-
 }

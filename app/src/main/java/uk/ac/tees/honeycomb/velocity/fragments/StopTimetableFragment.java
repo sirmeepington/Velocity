@@ -27,4 +27,5 @@ public class StopTimetableFragment extends Fragment {
         behaviour = new BusStopTimetable(view);
         return view;
     }
+
 }
