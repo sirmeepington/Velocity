@@ -8,40 +8,32 @@
         android:name="uk.ac.tees.honeycomb.velocity.fragments.MainFragment"
         android:label="fragment_main" >
         <action
-            android:id="@+id/mainToStopTimetable"
-            app:destination="@id/stopTimetableFragment"
-            app:enterAnim="@anim/fragment_open_enter" />
+            android:id="@+id/action_fragment_main_to_optionsFragment"
+            app:destination="@id/optionsFragment" />
         <action
-            android:id="@+id/mainToMap"
-            app:destination="@id/mapsFragment"
-            app:enterAnim="@anim/fragment_open_enter" />
+            android:id="@+id/action_fragment_main_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
         <action
-            android:id="@+id/mainToOptions"
-            app:destination="@id/optionsFragment"
-            app:enterAnim="@anim/fragment_open_enter" />
+            android:id="@+id/action_fragment_main_to_stopTimetableFragment"
+            app:destination="@id/stopTimetableFragment" />
+        <action
+            android:id="@+id/action_fragment_main_to_journeyPlannerFragment2"
+            app:destination="@id/journeyPlannerFragment" />
     </fragment>
     <fragment
         android:id="@+id/stopTimetableFragment"
         android:name="uk.ac.tees.honeycomb.velocity.fragments.StopTimetableFragment"
-        android:label="StopTimetableFragment" >
-        <action
-            android:id="@+id/action_stopTimetableFragment_self"
-            app:destination="@id/stopTimetableFragment" />
-    </fragment>
+        android:label="StopTimetableFragment" />
     <fragment
         android:id="@+id/mapsFragment"
         android:name="uk.ac.tees.honeycomb.velocity.fragments.MapsFragment"
-        android:label="MapsFragment" >
-        <action
-            android:id="@+id/action_mapsFragment_self"
-            app:destination="@id/mapsFragment" />
-    </fragment>
+        android:label="MapsFragment" />
     <fragment
         android:id="@+id/optionsFragment"
         android:name="uk.ac.tees.honeycomb.velocity.fragments.OptionsFragment"
-        android:label="OptionsFragment" >
-        <action
-            android:id="@+id/action_optionsFragment_self"
-            app:destination="@id/optionsFragment" />
-    </fragment>
+        android:label="OptionsFragment" />
+    <fragment
+        android:id="@+id/journeyPlannerFragment"
+        android:name="uk.ac.tees.honeycomb.velocity.fragments.JourneyPlannerFragment"
+        android:label="JourneyPlannerFragment" />
 </navigation>

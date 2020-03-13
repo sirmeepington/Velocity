@@ -17,9 +17,4 @@
     <string name="home">Home</string>
     <string name="stop_timetable">Stop Timetable</string>
     <string-array name="naptan_BusStop" />
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
->>>>>>> Bottom nav bar. Main fragment.
 </resources>
