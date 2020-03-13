@@ -66,30 +66,6 @@ public class MainActivity extends FragmentActivity implements
         transaction.commit();
     }
 
-    public void redirectJourney(View view)
-    {
-        Intent intent = new Intent(this, JourneyPlannerActivity.class);
-        startActivity(intent);
-    }
-
-    public void redirectLineTimetable(View view)
-    {
-        Intent intent = new Intent(this, LineTimetableActivity.class);
-        startActivity(intent);
-    }
-
-    public void redirectBusStop(View view)
-    {
-        Intent intent = new Intent(this, BusStopActivity.class);
-        startActivity(intent);
-    }
-
-    public void redirectOptions(View view)
-    {
-        Intent intent = new Intent(this, OptionsActivity.class);
-        startActivity(intent);
-    }
-
     @Override
     public void onFragmentInteraction(Uri uri) {
     }
