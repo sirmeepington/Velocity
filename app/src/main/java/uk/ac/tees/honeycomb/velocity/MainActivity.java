@@ -1,8 +1,10 @@
 package uk.ac.tees.honeycomb.velocity;
 
 import android.os.Bundle;
+import androidx.appcompat.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
@@ -54,7 +56,21 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationView navView = findViewById(R.id.nav_view);
 
+        Toolbar toolbar = findViewById(R.id.top_app_bar);
 
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_dehaze_black_24dp);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        toolbar.setNavigationOnClickListener(v -> {
+            DrawerLayout drawer = findViewById(R.id.drawer_layout);
+            if (drawer.isOpen()){
+                drawer.close();
+            } else {
+                drawer.open();
+            }
+        });
 
     }
 
