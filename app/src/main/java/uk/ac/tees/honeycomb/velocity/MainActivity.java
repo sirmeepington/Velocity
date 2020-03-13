@@ -52,6 +52,7 @@ public class MainActivity extends FragmentActivity implements
                     return true;
                 case R.id.nav_map:
                     load(new MapsFragment());
+                    return true;
                 default:
                     return false;
             }
