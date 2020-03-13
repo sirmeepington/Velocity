@@ -1,76 +1,67 @@
 package uk.ac.tees.honeycomb.velocity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.NavDirections;
-import androidx.navigation.Navigation;
-
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
 
-import com.google.android.material.bottomnavigation.BottomNavigationMenu;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 
+import uk.ac.tees.honeycomb.velocity.fragments.JourneyPlannerFragment;
 import uk.ac.tees.honeycomb.velocity.fragments.MainFragment;
-import uk.ac.tees.honeycomb.velocity.fragments.MainFragmentDirections;
+import uk.ac.tees.honeycomb.velocity.fragments.MapsFragment;
 import uk.ac.tees.honeycomb.velocity.fragments.StopTimetableFragment;
 
-public class MainActivity extends FragmentActivity implements MainFragment.OnFragmentInteractionListener, StopTimetableFragment.OnFragmentInteractionListener
-{
+public class MainActivity extends AppCompatActivity {
+
+    AccessibilitySettings copy = AccessibilitySettings.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         NavController controller = Navigation.findNavController(this,R.id.nav_host_fragment);
         BottomNavigationView menu = findViewById(R.id.bottom_nav);
+        NavigationUI.setupWithNavController(menu,controller);
+        load(new MainFragment()); // Initial background fragment
+
         menu.setOnNavigationItemSelectedListener(item -> {
-            NavDirections dir = null;
-            switch (item.getItemId()){
+            switch(item.getItemId()){
+                case R.id.nav_bus_stop:
+                    load(new StopTimetableFragment());
+                    return true;
+                case R.id.nav_journey:
+                    load(new JourneyPlannerFragment());
+                    return true;
                 case R.id.nav_home:
-                    break;
+                    load(new MainFragment());
+                    return true;
+                case R.id.nav_map:
+                    load(new MapsFragment());
+                    return true;
                 default:
-                    break;
+                    return false;
             }
-            return true;
         });
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationView navView = findViewById(R.id.nav_view);
 
+
+
     }
 
-    public void redirectJourney(View view)
-    {
-        Intent intent = new Intent(this, JourneyPlannerActivity.class);
-        startActivity(intent);
-    }
-
-    public void redirectLineTimetable(View view)
-    {
-        Intent intent = new Intent(this, LineTimetableActivity.class);
-        startActivity(intent);
-    }
-
-    public void redirectBusStop(View view)
-    {
-        Intent intent = new Intent(this, BusStopActivity.class);
-        startActivity(intent);
-    }
-
-    public void redirectOptions(View view)
-    {
-        Intent intent = new Intent(this, OptionsActivity.class);
-        startActivity(intent);
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
+    private void load(Fragment fragment){
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container,fragment);
+        transaction.disallowAddToBackStack();
+        transaction.commit();
     }
 }

@@ -65,7 +65,7 @@
         app:layout_constraintVertical_bias="0.174">
 
         <ListView
-            android:id="@+id/busStops"
+            android:id="@+id/jpListView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></ListView>
     </androidx.cardview.widget.CardView>
