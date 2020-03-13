@@ -31,7 +31,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
         android:onClick="jpConfirm"
-        android:text="Confirm"
+        android:text="@string/confirm_BusStop"
         app:layout_constraintBottom_toTopOf="@+id/jpResults"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +47,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
         android:onClick="jpSwitch"
-        android:text="Switch"
+        android:text="@string/swap_switch"
         app:layout_constraintBottom_toTopOf="@+id/jpTo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
@@ -82,7 +82,7 @@
         <ListView
             android:id="@+id/busStops"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></ListView>
+            android:layout_height="wrap_content" />
     </androidx.cardview.widget.CardView>
 
     <TextView
@@ -91,7 +91,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="45dp"
         android:layout_marginEnd="16dp"
-        android:text="From: "
+        android:text="@string/plnT_from"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/jpFrom"
         app:layout_constraintTop_toTopOf="parent" />
@@ -102,7 +102,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="132dp"
         android:layout_marginEnd="16dp"
-        android:text="To:"
+        android:text="@string/plnT_to"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/jpTo"
         app:layout_constraintTop_toBottomOf="@+id/jpFromText" />
