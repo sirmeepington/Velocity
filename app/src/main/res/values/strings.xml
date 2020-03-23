@@ -11,7 +11,15 @@
     <string name="map_button_redirect">Map</string>
     <string name="title_activity_maps">Map</string>
     <string name="google_maps_key">Google Maps</string>
-    <string-array name="naptan_BusStop">
-    </string-array>
     <string name="swap_switch">Switch</string>
+    <string name="map">Map</string>
+    <string name="journey_planner">Journey Planner</string>
+    <string name="home">Home</string>
+    <string name="stop_timetable">Stop Timetable</string>
+    <string-array name="naptan_BusStop" />
+    <string name="imgJourneyPlanner">image assigned to the journey planner</string>
+    <string name="imgVelocity">image of the velocity logo</string>
+    <string name="imgLineTimetable">image assigned with the line timetable</string>
+    <string name="imgBusStops">image assigned with the bus stops</string>
+    <string name="imgOptions">image assigned with options</string>
 </resources>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
+    app:startDestination="@id/fragment_main">
+
+    <fragment
+        android:id="@+id/fragment_main"
+        android:name="uk.ac.tees.honeycomb.velocity.fragments.MainFragment"
+        android:label="fragment_main" >
+        <action
+            android:id="@+id/action_fragment_main_to_optionsFragment"
+            app:destination="@id/optionsFragment" />
+        <action
+            android:id="@+id/action_fragment_main_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
+        <action
+            android:id="@+id/action_fragment_main_to_stopTimetableFragment"
+            app:destination="@id/stopTimetableFragment" />
+        <action
+            android:id="@+id/action_fragment_main_to_journeyPlannerFragment2"
+            app:destination="@id/journeyPlannerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/stopTimetableFragment"
+        android:name="uk.ac.tees.honeycomb.velocity.fragments.StopTimetableFragment"
+        android:label="StopTimetableFragment" />
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="uk.ac.tees.honeycomb.velocity.fragments.MapsFragment"
+        android:label="MapsFragment" />
+    <fragment
+        android:id="@+id/optionsFragment"
+        android:name="uk.ac.tees.honeycomb.velocity.fragments.OptionsFragment"
+        android:label="OptionsFragment" />
+    <fragment
+        android:id="@+id/journeyPlannerFragment"
+        android:name="uk.ac.tees.honeycomb.velocity.fragments.JourneyPlannerFragment"
+        android:label="JourneyPlannerFragment" />
+</navigation>

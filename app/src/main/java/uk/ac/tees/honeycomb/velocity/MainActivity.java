@@ -1,42 +1,76 @@
 package uk.ac.tees.honeycomb.velocity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import androidx.appcompat.widget.Toolbar;
 
-public class MainActivity extends AppCompatActivity
-{
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import uk.ac.tees.honeycomb.velocity.fragments.JourneyPlannerFragment;
+import uk.ac.tees.honeycomb.velocity.fragments.MainFragment;
+import uk.ac.tees.honeycomb.velocity.fragments.MapsFragment;
+import uk.ac.tees.honeycomb.velocity.fragments.StopTimetableFragment;
+
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        NavController controller = Navigation.findNavController(this,R.id.nav_host_fragment);
+        BottomNavigationView menu = findViewById(R.id.bottom_nav);
+        NavigationUI.setupWithNavController(menu,controller);
+        load(new MainFragment()); // Initial background fragment
+
+        menu.setOnNavigationItemSelectedListener(item -> {
+            switch(item.getItemId()){
+                case R.id.nav_bus_stop:
+                    load(new StopTimetableFragment());
+                    return true;
+                case R.id.nav_journey:
+                    load(new JourneyPlannerFragment());
+                    return true;
+                case R.id.nav_home:
+                    load(new MainFragment());
+                    return true;
+                case R.id.nav_map:
+                    load(new MapsFragment());
+                    return true;
+                default:
+                    return false;
+            }
+        });
+
+        Toolbar toolbar = findViewById(R.id.top_app_bar);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_dehaze_black_24dp);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        toolbar.setNavigationOnClickListener(v -> {
+            DrawerLayout drawer = findViewById(R.id.drawer_layout);
+            if (drawer.isOpen()){
+                drawer.close();
+            } else {
+                drawer.open();
+            }
+        });
+
     }
 
-    public void redirectJourney(View view)
-    {
-        Intent intent = new Intent(this, JourneyPlannerActivity.class);
-        startActivity(intent);
-    }
-
-    public void redirectLineTimetable(View view)
-    {
-        Intent intent = new Intent(this, LineTimetableActivity.class);
-        startActivity(intent);
-    }
-
-    public void redirectBusStop(View view)
-    {
-        Intent intent = new Intent(this, BusStopActivity.class);
-        startActivity(intent);
-    }
-
-    public void redirectOptions(View view)
-    {
-        Intent intent = new Intent(this, OptionsActivity.class);
-        startActivity(intent);
+    private void load(Fragment fragment){
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container,fragment);
+        transaction.disallowAddToBackStack();
+        transaction.commit();
     }
 }
