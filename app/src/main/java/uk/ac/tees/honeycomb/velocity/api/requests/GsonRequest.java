@@ -1,5 +1,7 @@
 package uk.ac.tees.honeycomb.velocity.api.requests;
 
+import android.util.Log;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
@@ -56,6 +58,7 @@ public class GsonRequest<T> extends Request<T> {
             String json = new String(
                     response.data,
                     HttpHeaderParser.parseCharset(response.headers));
+
             return Response.success(
                     (T) gson.fromJson(json, clazz.getType()),
                     HttpHeaderParser.parseCacheHeaders(response));

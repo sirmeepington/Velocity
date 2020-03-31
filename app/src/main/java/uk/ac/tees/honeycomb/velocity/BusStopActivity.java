@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Pattern;
 
+
 import uk.ac.tees.honeycomb.velocity.api.entities.endpoints.StopByName;
 import uk.ac.tees.honeycomb.velocity.api.entities.endpoints.StopByPostcode;
 import uk.ac.tees.honeycomb.velocity.api.entities.endpoints.StopTimetable;
@@ -193,7 +194,12 @@ public class BusStopActivity extends AppCompatActivity {
                     }
 
                     for(Departure departure : departures){
-                        AddRow(type,tb,departure.getLineName()+"                                    "+departure.getAimedDepartureTime()+"           "+departure.getOperatorName());
+
+    String opName = (departure.getOperatorName().equals(null) ? "No Operator Name" : departure.getOperatorName());
+
+    String first = String.format("-1$"+30+ "s", departure.getLineName());
+    AddRow(type, tb, first + departure.getAimedDepartureTime() + "           " + opName);
+
                     }
                 }
             },
