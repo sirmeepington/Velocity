@@ -40,7 +40,7 @@
                 <TableRow>
 
                     <TextView
-                        android:layout_width="70dp"
+                        android:layout_width="11dp"
                         android:layout_height="match_parent"
                         android:layout_column="0"
                         android:layout_weight="1"
