@@ -37,7 +37,8 @@
         <activity android:name=".JourneyPlannerActivity" />
         <activity android:name=".BusStopActivity" />
         <activity android:name=".LineTimetableActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
