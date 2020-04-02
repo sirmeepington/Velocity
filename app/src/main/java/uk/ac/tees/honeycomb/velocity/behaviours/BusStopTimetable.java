@@ -171,7 +171,8 @@ public class BusStopTimetable implements Behaviour {
                     }
 
                     for(Departure departure : departures){
-                        AddRow(getViewContext(),tb,departure.getLineName()+"                                    "+departure.getAimedDepartureTime()+"           "+departure.getOperatorName());
+                        String operatorName = departure.getOperatorName() == null ? "No Name Specified" : departure.getOperatorName();
+                        AddRow(getViewContext(),tb,departure.getLineName()+"                                    "+departure.getAimedDepartureTime()+"           "+operatorName);
                     }
                 },
                 error -> Log.e("Velocity", "Error: " + error)
