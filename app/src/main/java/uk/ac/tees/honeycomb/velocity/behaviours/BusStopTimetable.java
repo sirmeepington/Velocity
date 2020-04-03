@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -30,6 +31,7 @@ public class BusStopTimetable implements Behaviour {
     private HashMap<String, String> loadedStops = new HashMap<>();
     private ArrayList<String> atco = new ArrayList<>();
 
+
     public BusStopTimetable(View parentView){
         this.parentView = parentView;
         createListeners(parentView);
@@ -38,6 +40,8 @@ public class BusStopTimetable implements Behaviour {
     private void createListeners(View view){
         Button confirmButton = view.findViewById(R.id.confirm_busstop);
         confirmButton.setOnClickListener((view1) -> redirectButton());
+        makeSpinnerVisible(false);
+        makeProggressBarvisible(false);
     }
 
     public void redirectButton() {
@@ -59,8 +63,16 @@ public class BusStopTimetable implements Behaviour {
         return pattern.matcher(postCode).matches();
 
     }
+private void removeArrayElements()
+{
+    atco.removeAll(atco);
+    loadedStops.clear();
+}
 
     private void showBusStopsViaPostCode() {
+        removeArrayElements();
+        makeProggressBarvisible(true);
+
         final Spinner choices = parentView.findViewById(R.id.spinner_busstop);
 
         final EditText busStopInput = parentView.findViewById(R.id.busStopInput);
@@ -74,7 +86,12 @@ public class BusStopTimetable implements Behaviour {
                     final List<NaptanBusStop> stops = response.getMessage().getData();
                     if (stops == null) {
                         Log.d("Velocity", "No values found.");
-                        busStopInput.setHint("Error. Stop Name Does Not Exist");
+                        makeProggressBarvisible(false);
+                        TableLayout tb = parentView.findViewById(R.id.score_table);
+                        tb.removeAllViews();
+                        AddRow(getViewContext(),tb,"Apologies, No Bus Stops Can be Found With" +
+                                "\nZIP Code");
+                        clearSpinner();
                         return;
                     }
 
@@ -87,7 +104,8 @@ public class BusStopTimetable implements Behaviour {
                         loadedStops.put(stop.getAtcoCode().toLowerCase(), stop.getName() + " - " + stop.getLocality());
                         atco.add(stop.getAtcoCode().toLowerCase());
                     }
-
+                    makeProggressBarvisible(false);
+                    makeSpinnerVisible(true);
                     ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getViewContext(), android.R.layout.simple_spinner_item, new ArrayList<>(loadedStops.values()));
                     arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     choices.setAdapter(arrayAdapter);
@@ -102,10 +120,21 @@ public class BusStopTimetable implements Behaviour {
                     });
 
                 },
-                error -> Log.e("Velocity", "Error" + error));
+                error -> { Log.e("Velocity", "Error" + error);
+                    makeProggressBarvisible(false);
+
+                    TableLayout tb = parentView.findViewById(R.id.score_table);
+                    tb.removeAllViews();
+                    AddRow(getViewContext(),tb,"Apologies, Service Appears To be Down." +
+                            "\nTry Again Later! ");}
+        );
+
     }
 
+
     private void showBusStopViaName() {
+        removeArrayElements();
+        makeProggressBarvisible(true);
         final Spinner choices = parentView.findViewById(R.id.spinner_busstop);
 
         final EditText busStopInput = parentView.findViewById(R.id.busStopInput);
@@ -122,7 +151,10 @@ public class BusStopTimetable implements Behaviour {
                     final List<NaptanBusStop> stops = response.getMessage().getData();
                     if (stops == null || stops.isEmpty()) {
                         Log.d("Velocity", "No values found.");
-                        busStopInput.setHint("Error. Stop Name Does Not Exist");
+                        TableLayout tb = parentView.findViewById(R.id.score_table);
+                        tb.removeAllViews();
+                        AddRow(getViewContext(),tb,"No Bus Stops Found with that Name.");
+                        makeProggressBarvisible(false);
                         return;
                     }
 
@@ -135,7 +167,8 @@ public class BusStopTimetable implements Behaviour {
                         loadedStops.put(stop.getAtcoCode().toLowerCase(), stop.getName() + " - " + stop.getLocality());
                         atco.add(stop.getAtcoCode().toLowerCase());
                     }
-
+                    makeProggressBarvisible(false);
+                    makeSpinnerVisible(true);
                     ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getViewContext(), android.R.layout.simple_spinner_item, new ArrayList<>(loadedStops.values()));
                     arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     choices.setAdapter(arrayAdapter);
@@ -152,7 +185,13 @@ public class BusStopTimetable implements Behaviour {
                     });
 
                 },
-                error -> Log.e("Velocity", "Error" + error));
+                error -> { Log.e("Velocity", "Error" + error);
+                    makeProggressBarvisible(false);
+                    TableLayout tb = parentView.findViewById(R.id.score_table);
+                    tb.removeAllViews();
+                    AddRow(getViewContext(),tb,"Apologies, Service Appears To be Down." +
+                            "\nTry Again Later! ");}
+        );
 
     }
 
@@ -207,10 +246,47 @@ public class BusStopTimetable implements Behaviour {
                         }
                     }
                 },
-                error -> Log.e("Velocity", "Error: " + error)
+                error -> { Log.e("Velocity", "Error" + error);
+                    makeProggressBarvisible(false);
+                    TableLayout tb = parentView.findViewById(R.id.score_table);
+                    tb.removeAllViews();
+                    AddRow(getViewContext(),tb,"Apologies, Service Appears To be Down." +
+                            "\nTry Again Later! ");}
         );
     }
 
+    private void makeSpinnerVisible(boolean visible)
+    {
+        final Spinner choices = parentView.findViewById(R.id.spinner_busstop);
+        if(visible)
+        {
+            choices.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            choices.setVisibility(View.GONE);
+        }
+    }
+
+    private void makeProggressBarvisible(boolean visible)
+    {
+        final ProgressBar loadingbar = parentView.findViewById(R.id.progressBar);
+        if(visible)
+        {
+            loadingbar.setVisibility(View.VISIBLE);
+
+        }
+        else
+        {
+            loadingbar.setVisibility(View.GONE);
+        }
+    }
+
+    private void clearSpinner()
+    {
+        Spinner choices = parentView.findViewById(R.id.spinner_busstop);
+        choices.removeAllViews();
+    }
     private void AddRow(Context context, TableLayout layout, String text){
         TableRow row = new TableRow(context);
         TextView textView = new TextView(context);
