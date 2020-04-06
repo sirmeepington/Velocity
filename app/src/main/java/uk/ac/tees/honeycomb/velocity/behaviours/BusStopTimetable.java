@@ -213,37 +213,12 @@ private void removeArrayElements()
                         String operatorName = departure.getOperatorName() == null ? "No Name Specified" : departure.getOperatorName();
                         String ws1 ="";
                         String ws2 ="";
+
+                        StringBuilder sb1 = new StringBuilder();
                         int t = departure.getLineName().length();
-                        if(t > 1)
-                        {
-                            for(int i = 1;i<32;i++)
-                            {
-                                ws1 += " ";
-                            }
-
-                            ws1 =  ws1.substring(t*2,31);
-                        }
-                        else
-                        {
-                            for(int i = 1;i<32;i++)
-                            {
-                                ws1 += " ";
-                            }
-
-                            ws1 =  ws1.substring(t,31);
-                        }
-
-                        for(int i = 0;i<15;i++)
-                        {
-                            ws2 += " ";
-                        }
-                        if(departure.getOperatorName() == null || departure.getOperatorName().equalsIgnoreCase("null"))
-                        {
-                            AddRow(getViewContext(),tb,departure.getLineName()+ ws1+departure.getAimedDepartureTime());
-                        }
-                        else {
-                            AddRow(getViewContext(), tb, departure.getLineName() + ws1 + departure.getAimedDepartureTime() + ws2 + operatorName);
-                        }
+                        sb1.append(new String(new char[32]).replace('\0',' ').substring((t > 1) ? t * 2 : t));
+                        String secondSpacing = new String(new char[15]).replace("\0"," ");
+                        AddRow(getViewContext(), tb, departure.getLineName() + sb1.toString() + departure.getAimedDepartureTime() + secondSpacing + operatorName);
                     }
                 },
                 error -> { Log.e("Velocity", "Error" + error);
