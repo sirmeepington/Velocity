@@ -233,28 +233,13 @@ private void removeArrayElements()
     private void makeSpinnerVisible(boolean visible)
     {
         final Spinner choices = parentView.findViewById(R.id.spinner_busstop);
-        if(visible)
-        {
-            choices.setVisibility(View.VISIBLE);
-        }
-        else
-        {
-            choices.setVisibility(View.GONE);
-        }
+        choices.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
     private void makeProggressBarvisible(boolean visible)
     {
         final ProgressBar loadingbar = parentView.findViewById(R.id.progressBar);
-        if(visible)
-        {
-            loadingbar.setVisibility(View.VISIBLE);
-
-        }
-        else
-        {
-            loadingbar.setVisibility(View.GONE);
-        }
+        loadingbar.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
     private void clearSpinner()
