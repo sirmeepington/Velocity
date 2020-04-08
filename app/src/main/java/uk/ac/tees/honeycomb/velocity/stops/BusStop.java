@@ -1,5 +1,7 @@
 package uk.ac.tees.honeycomb.velocity.stops;
 
+import java.util.Locale;
+
 import uk.ac.tees.honeycomb.velocity.entities.Bearing;
 import uk.ac.tees.honeycomb.velocity.entities.Location;
 

@@ -1,5 +1,7 @@
 package uk.ac.tees.honeycomb.velocity.entities;
 
+import java.util.Locale;
+
 /**
  * Class to hold the longitude and latitude supplied by or given to the API for easier usage.
  */
@@ -34,4 +36,10 @@ public class Location {
     public double getLatitude() {
         return latitude;
     }
+
+
+    public String getLongLat(){
+        return String.format(Locale.ENGLISH,"lonlat:%f,%f", getLongitude(), getLatitude());
+    }
+
 }
