@@ -4,6 +4,9 @@ package uk.ac.tees.honeycomb.velocity.api.entities.transportapi;
  * A Journey data class containing the information returned from the
  * {@link uk.ac.tees.honeycomb.velocity.api.entities.responses.JourneyResponse}.
  * This contains the {@link #request_time} as well as a list of {@link #routes}.
+ *
+ * @author Aidan
+ * @since 08/04/20
  */
 public class Journey {
 

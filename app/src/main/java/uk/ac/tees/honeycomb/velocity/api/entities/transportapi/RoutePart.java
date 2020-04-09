@@ -4,6 +4,11 @@ package uk.ac.tees.honeycomb.velocity.api.entities.transportapi;
  * A step / part of a {@link JourneyRoute}.
  * A route may have many of these parts; these can signify a change
  * in transport or service throughout a route.
+ *
+ * @see JourneyRoute
+ *
+ * @author Aidan
+ * @since 08/04/20
  */
 public class RoutePart {
 

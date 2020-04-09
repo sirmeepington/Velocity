@@ -2,6 +2,12 @@ package uk.ac.tees.honeycomb.velocity.api.entities.transportapi;
 
 /**
  * An available route within a {@link Journey}.
+ * Consists of many {@link RoutePart}s.
+ *
+ * @see RoutePart
+ *
+ * @author Aidan
+ * @since 08/04/20
  */
 public class JourneyRoute {
 

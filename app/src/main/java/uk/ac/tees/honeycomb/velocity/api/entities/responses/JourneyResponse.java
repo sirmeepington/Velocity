@@ -9,6 +9,9 @@ import uk.ac.tees.honeycomb.velocity.api.entities.transportapi.Journey;
  *
  * @see uk.ac.tees.honeycomb.velocity.api.entities.endpoints.JourneyFromStops
  * @see uk.ac.tees.honeycomb.velocity.api.entities.endpoints.JourneyFromCoords
+ *
+ * @author Aidan
+ * @since 07/04/20
  */
 public class JourneyResponse {
 
