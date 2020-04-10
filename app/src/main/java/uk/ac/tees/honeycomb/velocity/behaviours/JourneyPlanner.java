@@ -78,7 +78,7 @@ public class JourneyPlanner implements Behaviour {
 
 
                         for(NaptanBusStop s : fromBusList){
-                            from.put(s.getName(),makeLonLat(s.getLocation()));
+                            from.put(s.getName(),s.getLocation().getLongLat());
                         }
                         final ArrayAdapter<String> fromBusAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, android.R.id.text1, new ArrayList<String>(from.keySet()));
                         fromDisplayedBusList.setAdapter(fromBusAdapter);
@@ -101,7 +101,7 @@ public class JourneyPlanner implements Behaviour {
                         ArrayList<NaptanBusStop> toBusList = (ArrayList<NaptanBusStop>) response.getMessage().getData();
 
                         for (NaptanBusStop s: toBusList){
-                            to.put(s.getName(),makeLonLat(s.getLocation()));
+                            to.put(s.getName(),s.getLocation().getLongLat());
                         }
                         final ArrayAdapter<String> toBusAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, android.R.id.text1,new ArrayList<String>(to.keySet()));
                         toDisplayedBusList.setAdapter(toBusAdapter);
@@ -115,10 +115,6 @@ public class JourneyPlanner implements Behaviour {
                     error -> { }
             );
         }
-    }
-
-    private String makeLonLat(Location location){
-        return String.format(Locale.ENGLISH,"lonlat:%f,%f", location.getLongitude(), location.getLatitude());
     }
 
     public void switchValues() {
