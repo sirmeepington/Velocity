@@ -12,6 +12,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 
 import uk.ac.tees.honeycomb.velocity.fragments.JourneyPlannerFragment;
 import uk.ac.tees.honeycomb.velocity.fragments.MainFragment;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         NavController controller = Navigation.findNavController(this,R.id.nav_host_fragment);
         BottomNavigationView menu = findViewById(R.id.bottom_nav);
         NavigationUI.setupWithNavController(menu,controller);
@@ -65,6 +67,33 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        NavigationView navView = findViewById(R.id.nav_view);
+        NavigationUI.setupWithNavController(navView, controller);
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        navView.setNavigationItemSelectedListener(item -> {
+            switch(item.getItemId()){
+                case R.id.nav_bus_stop:
+                    load(new StopTimetableFragment());
+                    drawer.close();
+                    return true;
+                case R.id.nav_journey:
+                    load(new JourneyPlannerFragment());
+                    drawer.close();
+                    return true;
+                case R.id.nav_home:
+                    load(new MainFragment());
+                    drawer.close();
+                    return true;
+                case R.id.nav_map:
+                    load(new MapsFragment());
+                    drawer.close();
+                    return true;
+                default:
+                    return false;
+            }
+        });
+
     }
 
     private void load(Fragment fragment){
@@ -73,4 +102,5 @@ public class MainActivity extends AppCompatActivity {
         transaction.disallowAddToBackStack();
         transaction.commit();
     }
+
 }

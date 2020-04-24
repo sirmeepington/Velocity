@@ -22,4 +22,9 @@
     <string name="imgLineTimetable">image assigned with the line timetable</string>
     <string name="imgBusStops">image assigned with the bus stops</string>
     <string name="imgOptions">image assigned with options</string>
+
+    <string name="qr_code">QR Code</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
