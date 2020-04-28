@@ -14,12 +14,18 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
+import uk.ac.tees.honeycomb.velocity.api.entities.transportapi.StopTimetable;
 import uk.ac.tees.honeycomb.velocity.fragments.JourneyPlannerFragment;
 import uk.ac.tees.honeycomb.velocity.fragments.MainFragment;
 import uk.ac.tees.honeycomb.velocity.fragments.MapsFragment;
 import uk.ac.tees.honeycomb.velocity.fragments.StopTimetableFragment;
 
 public class MainActivity extends AppCompatActivity {
+
+    private final StopTimetableFragment busStop = new StopTimetableFragment();
+    private final JourneyPlannerFragment journeyPlanner = new JourneyPlannerFragment();
+    private final MainFragment main = new MainFragment();
+    private final MapsFragment maps = new MapsFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -35,16 +41,16 @@ public class MainActivity extends AppCompatActivity {
         menu.setOnNavigationItemSelectedListener(item -> {
             switch(item.getItemId()){
                 case R.id.nav_bus_stop:
-                    load(new StopTimetableFragment());
+                    load(busStop);
                     return true;
                 case R.id.nav_journey:
-                    load(new JourneyPlannerFragment());
+                    load(journeyPlanner);
                     return true;
                 case R.id.nav_home:
-                    load(new MainFragment());
+                    load(main);
                     return true;
                 case R.id.nav_map:
-                    load(new MapsFragment());
+                    load(maps);
                     return true;
                 default:
                     return false;
@@ -74,19 +80,19 @@ public class MainActivity extends AppCompatActivity {
         navView.setNavigationItemSelectedListener(item -> {
             switch(item.getItemId()){
                 case R.id.nav_bus_stop:
-                    load(new StopTimetableFragment());
+                    load(busStop);
                     drawer.close();
                     return true;
                 case R.id.nav_journey:
-                    load(new JourneyPlannerFragment());
+                    load(journeyPlanner);
                     drawer.close();
                     return true;
                 case R.id.nav_home:
-                    load(new MainFragment());
+                    load(main);
                     drawer.close();
                     return true;
                 case R.id.nav_map:
-                    load(new MapsFragment());
+                    load(maps);
                     drawer.close();
                     return true;
                 default:

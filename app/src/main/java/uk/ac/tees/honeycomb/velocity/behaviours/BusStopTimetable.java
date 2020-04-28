@@ -30,6 +30,7 @@ public class BusStopTimetable implements Behaviour {
     private final View parentView;
     private HashMap<String, String> loadedStops = new HashMap<>();
     private ArrayList<String> atco = new ArrayList<>();
+    private String cacheInput = null;
 
 
     public BusStopTimetable(View parentView){
@@ -38,6 +39,8 @@ public class BusStopTimetable implements Behaviour {
     }
 
     private void createListeners(View view){
+        EditText edtTxt = parentView.findViewById(R.id.busStopInput);
+        edtTxt.setText(cacheInput);
         Button confirmButton = view.findViewById(R.id.confirm_busstop);
         confirmButton.setOnClickListener((view1) -> redirectButton());
         makeSpinnerVisible(false);
@@ -45,7 +48,9 @@ public class BusStopTimetable implements Behaviour {
     }
 
     public void redirectButton() {
+
         final EditText busStopInput = parentView.findViewById(R.id.busStopInput);
+        cacheInput = busStopInput.getText().toString();
 
         if (validatePostCode(busStopInput.getText().toString())) {
             showBusStopsViaPostCode();
