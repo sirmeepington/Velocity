@@ -186,7 +186,7 @@ public boolean toSearchCheck = false;
     private void JourneySearch(){
         JourneyFromStops jfs = new JourneyFromStops(getContext(),busStopFrom,busStopTo);
         AlertDialog.Builder temp = new AlertDialog.Builder(getContext());
-        temp.setMessage("fuck you");
+        temp.setMessage("");
         temp.show();
         jfs.query(response -> {
             Journey jpResult = (Journey) response.getMessage().getJourney();
