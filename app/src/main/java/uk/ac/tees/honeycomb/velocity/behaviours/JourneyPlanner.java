@@ -1,36 +1,25 @@
 package uk.ac.tees.honeycomb.velocity.behaviours;
 
 import android.content.Context;
-import android.renderscript.ScriptGroup;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.function.Consumer;
 
 import uk.ac.tees.honeycomb.velocity.R;
 import uk.ac.tees.honeycomb.velocity.api.entities.endpoints.JourneyFromStops;
 import uk.ac.tees.honeycomb.velocity.api.entities.endpoints.StopByName;
-import uk.ac.tees.honeycomb.velocity.api.entities.responses.JourneyResponse;
 import uk.ac.tees.honeycomb.velocity.api.entities.transportapi.Journey;
 import uk.ac.tees.honeycomb.velocity.api.entities.transportapi.JourneyRoute;
-import uk.ac.tees.honeycomb.velocity.entities.Location;
 import uk.ac.tees.honeycomb.velocity.stops.BusStop;
 import uk.ac.tees.honeycomb.velocity.stops.NaptanBusStop;
+
 
 
 public class JourneyPlanner implements Behaviour {
@@ -48,7 +37,7 @@ public boolean toSearchCheck = false;
     }
 
     private void showKeyboard(){
-        EditText fromText = (EditText) parentView.findViewById(R.id.jpFrom);
+        EditText fromText = parentView.findViewById(R.id.jpFrom);
         fromText.requestFocus();
         InputMethodManager imm = (InputMethodManager)getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
@@ -80,52 +69,8 @@ public boolean toSearchCheck = false;
         return parentView.getContext();
     }
 
-    private <T> T getCollectionAtIndex(Collection<T> coll, int index){
-        for(int i = 0; i < index; i++){
-            coll.iterator().next();
-        }
-        return coll.iterator().next();
-    }
-
-    public void jpConfirm(){
-        hideKeyboard();
-
-
-
-
-
-        if (checkFromText() || checkToText()){
-            AlertDialog.Builder errEmptyFrom = new AlertDialog.Builder(getContext());
-            errEmptyFrom.setMessage("Error: Please make sure the 'From' and 'To' fields are filled.");
-            errEmptyFrom.show();
-        }else if (!fromSearchCheck || !toSearchCheck){
-            AlertDialog.Builder errNoSearch = new AlertDialog.Builder(getContext());
-            errNoSearch.setMessage("Please search and select a bus stop.");
-            errNoSearch.show();
-
-        }else{
-            JourneyFromStops jfs = new JourneyFromStops(getContext(),busStopFrom,busStopTo);
-
-            jfs.query(response -> {
-                Journey jpResult = (Journey) response.getMessage().getJourney();
-
-
-
-                final ListView resultList = parentView.findViewById(R.id.jpListView);
-                final ArrayAdapter<JourneyRoute> resultAdapter = new ArrayAdapter<JourneyRoute>(getContext(), android.R.layout.simple_list_item_1, android.R.id.text1, jpResult.getRoutes());
-                resultList.setAdapter(resultAdapter);
-                resultList.setOnItemClickListener((parent, view, position, id) -> {
-
-                });
-
-            }, error -> {});
-        }
-
-
-
-    }
-
     public void switchValues() {
+
         EditText from = parentView.findViewById(R.id.jpFrom);
         String strFrom = from.getText().toString();
         EditText to = parentView.findViewById(R.id.jpTo);
@@ -150,12 +95,14 @@ public boolean toSearchCheck = false;
 
     public void fromSearch(){
 
+
+        hideKeyboard();
         final EditText fromInput = parentView.findViewById(R.id.jpFrom);
+        final EditText toInput = parentView.findViewById(R.id.jpTo);
         String fromInputText = fromInput.getText().toString();
         final ListView fromDisplayedBusList = parentView.findViewById(R.id.jpListView);
         final StopByName fromStop = new StopByName(getContext(), fromInputText);
         fromInput.requestFocus();
-
         fromStop.query(
                 response -> {
                     ArrayList<NaptanBusStop> fromBusList = (ArrayList<NaptanBusStop>) response.getMessage().getData();
@@ -167,14 +114,12 @@ public boolean toSearchCheck = false;
 
                     final ArrayAdapter<String> fromBusAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, android.R.id.text1, fromBusListString);
                     fromDisplayedBusList.setAdapter(fromBusAdapter);
-
                     fromDisplayedBusList.setOnItemClickListener((parent, view, position, id) -> {
-                        //saving long and lat of selected bus stop.
-                        String fromLonglatSelected = fromBusList.get(position).getLocation().getLongLat();
-                        //bus stop name
                         String fromBusStopName = (String) fromBusList.get(position).getName();
                         busStopFrom = fromBusList.get(position);
                         fromInput.setText(fromBusStopName);
+                        showKeyboard();
+                        toInput.requestFocus();
                         fromBusAdapter.clear();
 
 
@@ -209,6 +154,7 @@ public boolean toSearchCheck = false;
                         String toBusStopName = (String) toBusList.get(position).getName();
                         busStopTo = toBusList.get(position);
                         toInput.setText(toBusStopName);
+                        hideKeyboard();
                         toBusAdapter.clear();
                     });
                     toSearchCheck = true;
@@ -216,6 +162,46 @@ public boolean toSearchCheck = false;
                 },
                 error -> { }
         );
+    }
+
+    public void jpConfirm(){
+        hideKeyboard();
+        if (checkFromText() || checkToText()){
+
+            AlertDialog.Builder errEmptyFrom = new AlertDialog.Builder(getContext());
+            errEmptyFrom.setMessage("Error: Please make sure the 'From' and 'To' fields are filled.");
+            errEmptyFrom.show();
+
+        }else if (!fromSearchCheck || !toSearchCheck){
+
+            AlertDialog.Builder errNoSearch = new AlertDialog.Builder(getContext());
+            errNoSearch.setMessage("Please search and select a bus stop.");
+            errNoSearch.show();
+
+        }else{
+            JourneySearch();
+        }
+    }
+
+    private void JourneySearch(){
+        JourneyFromStops jfs = new JourneyFromStops(getContext(),busStopFrom,busStopTo);
+        AlertDialog.Builder temp = new AlertDialog.Builder(getContext());
+        temp.setMessage("fuck you");
+        temp.show();
+        jfs.query(response -> {
+            Journey jpResult = (Journey) response.getMessage().getJourney();
+
+
+
+
+            final ListView resultList = parentView.findViewById(R.id.jpListView);
+            final ArrayAdapter<JourneyRoute> resultAdapter = new ArrayAdapter<JourneyRoute>(getContext(), android.R.layout.simple_list_item_1, android.R.id.text1, jpResult.getRoutes());
+            resultList.setAdapter(resultAdapter);
+            resultList.setOnItemClickListener((parent, view, position, id) -> {
+
+            });
+
+        }, error -> {});
     }
 
 
