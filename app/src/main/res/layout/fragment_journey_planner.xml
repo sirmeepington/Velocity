@@ -12,60 +12,62 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:autoText="false"
         android:ems="10"
         android:inputType="textPersonName"
         android:selectAllOnFocus="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.35"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
 
     <Button
         android:id="@+id/jpConfirm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="272dp"
+        android:layout_height="41dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
         android:onClick="jpConfirm"
         android:text="@string/confirm_BusStop"
         app:layout_constraintBottom_toTopOf="@+id/jpResults"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/jpTo"
-        app:layout_constraintVertical_bias="0.428" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.86" />
 
     <Button
         android:id="@+id/jpSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
         android:onClick="jpSwitch"
         android:text="@string/swap_switch"
-        app:layout_constraintBottom_toTopOf="@+id/jpTo"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.416"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/jpFrom" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.115" />
 
     <EditText
         android:id="@+id/jpTo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
         android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.35"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/jpSwitch" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.196" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/jpResults"
@@ -89,8 +91,8 @@
         android:id="@+id/jpFromText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="20dp"
         android:text="@string/plnT_from"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/jpFrom"
@@ -100,22 +102,46 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="132dp"
         android:layout_marginEnd="16dp"
         android:text="@string/plnT_to"
         android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/jpTo"
-        app:layout_constraintTop_toBottomOf="@+id/jpFromText" />
+        app:layout_constraintHorizontal_bias="0.904"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.205" />
 
     <ListView
         android:id="@+id/jpListView"
-        android:layout_width="411dp"
-        android:layout_height="366dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="389dp"
+        android:layout_height="352dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/jpResults" />
+
+    <Button
+        android:id="@+id/jpFromSearch"
+        android:layout_width="82dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="16dp"
+        android:text="Search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.567"
+        app:layout_constraintStart_toEndOf="@+id/jpFrom"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/jpToSearch"
+        android:layout_width="82dp"
+        android:layout_height="44dp"
+        android:text="Search"
+        app:layout_constraintBottom_toTopOf="@+id/jpListView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.567"
+        app:layout_constraintStart_toEndOf="@+id/jpTo"
+        app:layout_constraintTop_toBottomOf="@+id/jpFromSearch"
+        app:layout_constraintVertical_bias="0.317" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
