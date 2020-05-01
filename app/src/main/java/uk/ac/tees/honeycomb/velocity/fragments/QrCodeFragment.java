@@ -1,17 +1,19 @@
-package uk.ac.tees.honeycomb.velocity;
+package uk.ac.tees.honeycomb.velocity.fragments;
 
-import android.content.Intent;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Base64;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,11 +26,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
+import uk.ac.tees.honeycomb.velocity.R;
+import uk.ac.tees.honeycomb.velocity.entities.RecViewAdapter;
 
-public class QRCodeActivity extends AppCompatActivity {
+public class QrCodeFragment extends Fragment {
 
     static ImageView qrCodeImage;
     Button LaunchCamera;
@@ -43,22 +48,25 @@ public class QRCodeActivity extends AppCompatActivity {
 
     public static boolean condition = false;
 
+    private View parentView;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_qrcode);
-        LaunchCamera = (Button) findViewById(R.id.photobtn);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        parentView = inflater.inflate(R.layout.fragment_qrcode, container,false);
+        LaunchCamera = parentView.findViewById(R.id.photobtn);
 
         loadData();
 
-        adapter = new RecViewAdapter(this, qrName, qrDate, qrImage);
+        adapter = new RecViewAdapter(parentView.getContext(), qrName, qrDate, qrImage);
 
-        rv = findViewById(R.id.rv);
+        rv = parentView.findViewById(R.id.rv);
         rv.setHasFixedSize(true);
-        rv.setLayoutManager(new LinearLayoutManager(this));
+        rv.setLayoutManager(new LinearLayoutManager(parentView.getContext()));
         rv.setAdapter(adapter);
 
-        final Intent in = new Intent (this, MapsActivity.class);
+        /*
+        final Intent in = new Intent (parentView.getContext(), MapsActivity.class);
 
         LaunchCamera.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,12 +75,13 @@ public class QRCodeActivity extends AppCompatActivity {
                 startActivity(in);
             }
         });
+         */
+
+        return parentView;
     }
 
 
     public static void generateQRCode(String content, String name){
-
-
         //qr code
         int dim = 300;
         Bitmap bm;
@@ -85,11 +94,11 @@ public class QRCodeActivity extends AppCompatActivity {
             qrCodeImage.setImageBitmap(bm);
 
         }catch(Exception e){
-
+             //
         }
         //date
         Date d = Calendar.getInstance().getTime();
-        SimpleDateFormat df = new SimpleDateFormat("dd/MMM/yyyy");
+        SimpleDateFormat df = new SimpleDateFormat("dd/MMM/yyyy", Locale.ENGLISH);
         String date = df.format(d);
 
 
@@ -113,7 +122,7 @@ public class QRCodeActivity extends AppCompatActivity {
     }
 
     public void saveData(){
-        SharedPreferences sharedPreferences = getSharedPreferences("Shared preferences", MODE_PRIVATE); //no app can change shared preferences
+        SharedPreferences sharedPreferences = parentView.getContext().getSharedPreferences("Shared preferences", Context.MODE_PRIVATE); //no app can change shared preferences
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
 
@@ -145,7 +154,7 @@ public class QRCodeActivity extends AppCompatActivity {
     }
 
     public void loadData(){
-        SharedPreferences sharedPreferences = getSharedPreferences("Shared preferences", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = parentView.getContext().getSharedPreferences("Shared preferences", Context.MODE_PRIVATE);
         Gson gson = new Gson();
 
         String jsonName = sharedPreferences.getString("QRName", null);

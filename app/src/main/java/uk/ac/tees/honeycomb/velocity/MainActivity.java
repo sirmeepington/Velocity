@@ -1,9 +1,9 @@
 package uk.ac.tees.honeycomb.velocity;
 
 import android.os.Bundle;
-import androidx.appcompat.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -14,10 +14,11 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
-import uk.ac.tees.honeycomb.velocity.api.entities.transportapi.StopTimetable;
+import uk.ac.tees.honeycomb.velocity.fragments.CameraFragment;
 import uk.ac.tees.honeycomb.velocity.fragments.JourneyPlannerFragment;
 import uk.ac.tees.honeycomb.velocity.fragments.MainFragment;
 import uk.ac.tees.honeycomb.velocity.fragments.MapsFragment;
+import uk.ac.tees.honeycomb.velocity.fragments.QrCodeFragment;
 import uk.ac.tees.honeycomb.velocity.fragments.StopTimetableFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     private final JourneyPlannerFragment journeyPlanner = new JourneyPlannerFragment();
     private final MainFragment main = new MainFragment();
     private final MapsFragment maps = new MapsFragment();
+    private final CameraFragment camera = new CameraFragment();
+    private final QrCodeFragment qrCode = new QrCodeFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -93,6 +96,14 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.nav_map:
                     load(maps);
+                    drawer.close();
+                    return true;
+                case R.id.nav_qr_code:
+                    load(qrCode);
+                    drawer.close();
+                    return true;
+                case R.id.nav_camera:
+                    load(camera);
                     drawer.close();
                     return true;
                 default:
