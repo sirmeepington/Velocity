@@ -34,7 +34,7 @@ public class JourneyFromCoords extends Endpoint<JourneyResponse> {
      * @param to The ending coordinate in the `lonlat` format.
      */
     public JourneyFromCoords(Context context, String from, String to){
-        super(context,"api/journey?from="+from+"&to="+to);
+        super(context,"/api/journey?from="+from+"&to="+to);
     }
 
     @Override
