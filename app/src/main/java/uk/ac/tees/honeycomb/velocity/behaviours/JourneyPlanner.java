@@ -7,10 +7,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import uk.ac.tees.honeycomb.velocity.R;
 import uk.ac.tees.honeycomb.velocity.api.entities.endpoints.JourneyFromStops;
@@ -24,11 +26,11 @@ import uk.ac.tees.honeycomb.velocity.stops.NaptanBusStop;
 
 public class JourneyPlanner implements Behaviour {
 
-private final View parentView;
-BusStop busStopFrom;
-BusStop busStopTo;
-public boolean fromSearchCheck = false;
-public boolean toSearchCheck = false;
+    private final View parentView;
+    BusStop busStopFrom;
+    BusStop busStopTo;
+    public boolean fromSearchCheck = false;
+    public boolean toSearchCheck = false;
 
     public JourneyPlanner(View parentView){
         this.parentView = parentView;
@@ -67,6 +69,13 @@ public boolean toSearchCheck = false;
 
     private Context getContext(){
         return parentView.getContext();
+    }
+
+    private <T> T getCollectionAtIndex(Collection<T> coll, int index){
+        for(int i = 0; i < index; i++){
+            coll.iterator().next();
+        }
+        return coll.iterator().next();
     }
 
     public void switchValues() {
@@ -121,8 +130,6 @@ public boolean toSearchCheck = false;
                         showKeyboard();
                         toInput.requestFocus();
                         fromBusAdapter.clear();
-
-
 
                     });
 
@@ -185,21 +192,21 @@ public boolean toSearchCheck = false;
 
     private void JourneySearch(){
         JourneyFromStops jfs = new JourneyFromStops(getContext(),busStopFrom,busStopTo);
-        AlertDialog.Builder temp = new AlertDialog.Builder(getContext());
-        temp.setMessage("");
-        temp.show();
         jfs.query(response -> {
-            Journey jpResult = (Journey) response.getMessage().getJourney();
-
-
-
+            Journey jpResult = response.getMessage().getJourney();
 
             final ListView resultList = parentView.findViewById(R.id.jpListView);
-            final ArrayAdapter<JourneyRoute> resultAdapter = new ArrayAdapter<JourneyRoute>(getContext(), android.R.layout.simple_list_item_1, android.R.id.text1, jpResult.getRoutes());
-            resultList.setAdapter(resultAdapter);
-            resultList.setOnItemClickListener((parent, view, position, id) -> {
+            if (jpResult.getRoutes() != null) {
+                // Do what you want with the journey result.
+                final ArrayAdapter<JourneyRoute> resultAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, android.R.id.text1, jpResult.getRoutes());
+                resultList.setAdapter(resultAdapter);
+                resultList.setOnItemClickListener((parent, view, position, id) -> {
 
-            });
+                });
+                Toast.makeText(parentView.getContext(), "Route found from "+jpResult.getSource(), Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(parentView.getContext(), "No Route Found, Sorry.", Toast.LENGTH_LONG).show();
+            }
 
         }, error -> {});
     }

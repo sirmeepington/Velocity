@@ -17,7 +17,7 @@ import uk.ac.tees.honeycomb.velocity.api.requests.ImpetusRequest;
 public class StopFromAtcoCode extends Endpoint<StopFromAtcoCodeResponse> {
 
     public StopFromAtcoCode(Context context, String atcoCode){
-        super(context, "/api/stop/code?atco="+atcoCode);
+        super(context, "/api/stop/code?atco="+Impetus.encode(atcoCode));
     }
 
     /**

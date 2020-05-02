@@ -17,7 +17,7 @@ import uk.ac.tees.honeycomb.velocity.api.requests.ImpetusRequest;
 public class StopByCoords extends Endpoint<StopByCoordsResponse> {
 
     public StopByCoords(Context context, double latitude, double longitude) {
-        super(context, "/api/stop/coords?lat="+latitude+"&long="+longitude);
+        super(context, "/api/stop/coords?lat="+Impetus.encode(latitude)+"&long="+ Impetus.encode(longitude));
     }
 
     @Override

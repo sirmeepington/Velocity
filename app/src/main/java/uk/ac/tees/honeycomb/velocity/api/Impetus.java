@@ -6,6 +6,9 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -61,21 +64,17 @@ public class Impetus {
     }
 
     /**
-     * Creates basic HTTP GET request query parameters from a {@link HashMap}.
-     * @param params The parameters in the order of key + value.
-     * @return The query parameter string.
+     * Attempts to encode the given parameter.
+     * Wraps the try/catch given from {@link URLEncoder#encode(String, String)}.
+     * @param param The String to encode/
+     * @return The UTF-8 encoded string.
      */
-    public static String createQueryParams(HashMap<String,String> params){
-        boolean first = true;
-        StringBuilder sb = new StringBuilder();
-        for(Map.Entry<String,String> entry : params.entrySet()){
-            sb.append(first ? '?' : '&');
-            sb.append(entry.getKey());
-            sb.append('=');
-            sb.append(entry.getValue());
-            first = false;
+    public static String encode(Object param){
+        try {
+            return URLEncoder.encode(param.toString(), StandardCharsets.UTF_8.name());
+        } catch (UnsupportedEncodingException e) {
+            return param.toString();
         }
-        return sb.toString();
     }
 
 }
