@@ -44,11 +44,8 @@ public class QrCodeFragment extends Fragment {
     public static ArrayList<String> qrName;
     public static ArrayList<String> qrDate;
     public static ArrayList<Bitmap> qrImage;
-    private String encoded;
 
-    public static boolean condition = false;
-
-    private View parentView;
+    private static View parentView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -81,8 +78,9 @@ public class QrCodeFragment extends Fragment {
     }
 
 
-    public static void generateQRCode(String content, String name){
+    public static void generateQRCode(String content, String title){
         //qr code
+
         int dim = 300;
         Bitmap bm;
         QRGEncoder qrge = new QRGEncoder(content, QRGContents.Type.TEXT,dim);
@@ -101,12 +99,12 @@ public class QrCodeFragment extends Fragment {
         SimpleDateFormat df = new SimpleDateFormat("dd/MMM/yyyy", Locale.ENGLISH);
         String date = df.format(d);
 
-
-        condition = true;
-
         //add to arraylists
-        qrName.add(name);
+
+        qrName.add(title);
         qrDate.add(date);
+
+        saveData();
 
         //Arraylists go here
         //1 of type string and 2 of type Image.
@@ -117,11 +115,11 @@ public class QrCodeFragment extends Fragment {
     public void onResume() {
 
         super.onResume();
-    //    adapter.notifyDataSetChanged();
+        //adapter.notifyDataSetChanged();
         saveData();
     }
 
-    public void saveData(){
+    public static void saveData(){
         SharedPreferences sharedPreferences = parentView.getContext().getSharedPreferences("Shared preferences", Context.MODE_PRIVATE); //no app can change shared preferences
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();

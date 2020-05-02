@@ -27,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
     private final JourneyPlannerFragment journeyPlanner = new JourneyPlannerFragment();
     private final MainFragment main = new MainFragment();
     private final MapsFragment maps = new MapsFragment();
-    private final CameraFragment camera = new CameraFragment();
     private final QrCodeFragment qrCode = new QrCodeFragment();
+    private final CameraFragment camera = new CameraFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -104,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.nav_camera:
                     load(camera);
+                    camera.getQrCodeFragement(qrCode);
                     drawer.close();
                     return true;
                 default:
