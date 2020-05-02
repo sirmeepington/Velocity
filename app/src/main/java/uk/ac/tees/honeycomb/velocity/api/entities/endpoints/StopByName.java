@@ -17,7 +17,7 @@ import uk.ac.tees.honeycomb.velocity.api.entities.responses.StopByNameResponse;
 public class StopByName extends Endpoint<StopByNameResponse> {
 
     public StopByName(Context context, String name){
-        super(context, "/api/stop/name?name="+name);
+        super(context, "/api/stop/name?name="+Impetus.encode(name));
     }
 
     /**

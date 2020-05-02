@@ -19,7 +19,7 @@ import uk.ac.tees.honeycomb.velocity.api.requests.ImpetusRequest;
 public class StopByPostcode extends Endpoint<StopByPostcodeResponse> {
 
     public StopByPostcode(Context context, String postcode){
-        super(context, "/api/stop/postcode?postcode="+postcode);
+        super(context, "/api/stop/postcode?postcode="+Impetus.encode(postcode));
     }
 
     /**

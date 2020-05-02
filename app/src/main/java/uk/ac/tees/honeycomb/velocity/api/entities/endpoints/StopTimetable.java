@@ -17,7 +17,7 @@ public class StopTimetable extends Endpoint<BusStopTimetableResponse> {
 
     public StopTimetable(Context context, String atcoCode){
         // toUpperCase required due to TransportAPI.
-        super(context, "/api/stop/timetable?atco="+atcoCode.toUpperCase());
+        super(context, "/api/stop/timetable?atco="+Impetus.encode(atcoCode.toUpperCase()));
     }
 
     @Override
