@@ -11,10 +11,10 @@ package uk.ac.tees.honeycomb.velocity.api.entities.transportapi;
  */
 public class JourneyRoute {
 
-    private String arrivalTime;
-    private String departureTime;
+    private String arrival_time;
+    private String departure_time;
     private String duration;
-    private RoutePart[] routeParts;
+    private RoutePart[] route_parts;
 
     /**
      * Returns the estimated time of arrival to the destination using
@@ -22,7 +22,7 @@ public class JourneyRoute {
      * @return The estimated time of arrival.
      */
     public String getArrivalTime() {
-        return arrivalTime;
+        return arrival_time;
     }
 
     /**
@@ -30,7 +30,7 @@ public class JourneyRoute {
      * @return The estimated departure time.
      */
     public String getDepartureTime() {
-        return departureTime;
+        return departure_time;
     }
 
     /**
@@ -47,6 +47,6 @@ public class JourneyRoute {
      * @return The array if {@link RoutePart}s.
      */
     public RoutePart[] getRouteParts() {
-        return routeParts;
+        return route_parts;
     }
 }

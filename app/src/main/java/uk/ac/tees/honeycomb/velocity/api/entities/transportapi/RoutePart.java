@@ -12,9 +12,9 @@ package uk.ac.tees.honeycomb.velocity.api.entities.transportapi;
  */
 public class RoutePart {
 
-    private String arrivalTime;
+    private String arrival_time;
     private Location[] coordinates;
-    private String departureTime;
+    private String departure_time;
     private String destination;
     private String duration;
     private String from_point_name;
@@ -27,7 +27,7 @@ public class RoutePart {
      * @return The arrival time of this part.
      */
     public String getArrivalTime() {
-        return arrivalTime;
+        return arrival_time;
     }
 
     /**
@@ -45,7 +45,7 @@ public class RoutePart {
      * @return The departure time.
      */
     public String getDepartureTime() {
-        return departureTime;
+        return departure_time;
     }
 
     /**
