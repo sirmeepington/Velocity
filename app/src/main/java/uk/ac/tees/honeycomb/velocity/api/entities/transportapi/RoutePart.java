@@ -1,5 +1,7 @@
 package uk.ac.tees.honeycomb.velocity.api.entities.transportapi;
 
+import uk.ac.tees.honeycomb.velocity.entities.Location;
+
 /**
  * A step / part of a {@link JourneyRoute}.
  * A route may have many of these parts; these can signify a change
@@ -13,7 +15,7 @@ package uk.ac.tees.honeycomb.velocity.api.entities.transportapi;
 public class RoutePart {
 
     private String arrival_time;
-    private Location[] coordinates;
+    private double[][] coordinates;
     private String departure_time;
     private String destination;
     private String duration;
@@ -37,7 +39,18 @@ public class RoutePart {
      * @return An ordered array of coordinates.
      */
     public Location[] getCoordinates() {
-        return coordinates;
+        if (coordinates == null){
+            return null;
+        }
+        Location[] coords = new Location[coordinates.length];
+        for(int i = 0; i < coordinates.length; i++) {
+            double[] location = coordinates[i];
+            if (location == null) {
+                continue;
+            }
+            coords[i] = new Location(location[0],location[1]);
+        }
+        return coords;
     }
 
     /**
