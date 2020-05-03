@@ -137,9 +137,13 @@ public class MainActivity extends AppCompatActivity {
      *
      * @return false - if the permission has not been granted. Otherwise returns true.
      */
-    @RequiresApi(api = Build.VERSION_CODES.M)
+    @RequiresApi(api = Build.VERSION_CODES.M) // This doesn't work for some reason.
     public boolean requestCameraPermission()
     {
+        // If check should work.
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            return true; // Assume we have permission since we can't check ourselves.
+        }
         if(checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
         {
             requestPermissions(new String[]{Manifest.permission.CAMERA}, 999);
