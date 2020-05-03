@@ -36,7 +36,6 @@ import uk.ac.tees.honeycomb.velocity.entities.RecViewAdapter;
 public class QrCodeFragment extends Fragment {
 
     static ImageView qrCodeImage;
-    Button LaunchCamera;
 
     RecyclerView rv;
     RecViewAdapter adapter;
@@ -51,7 +50,6 @@ public class QrCodeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         parentView = inflater.inflate(R.layout.fragment_qrcode, container,false);
-        LaunchCamera = parentView.findViewById(R.id.photobtn);
 
         loadData();
 
@@ -61,18 +59,6 @@ public class QrCodeFragment extends Fragment {
         rv.setHasFixedSize(true);
         rv.setLayoutManager(new LinearLayoutManager(parentView.getContext()));
         rv.setAdapter(adapter);
-
-        /*
-        final Intent in = new Intent (parentView.getContext(), MapsActivity.class);
-
-        LaunchCamera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                startActivity(in);
-            }
-        });
-         */
 
         return parentView;
     }

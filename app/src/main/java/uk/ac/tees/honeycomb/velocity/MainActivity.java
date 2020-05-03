@@ -4,7 +4,6 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,7 +23,6 @@ import uk.ac.tees.honeycomb.velocity.fragments.JourneyPlannerFragment;
 import uk.ac.tees.honeycomb.velocity.fragments.MainFragment;
 import uk.ac.tees.honeycomb.velocity.fragments.MapsFragment;
 import uk.ac.tees.honeycomb.velocity.fragments.QrCodeFragment;
-import uk.ac.tees.honeycomb.velocity.fragments.QrDetailsFragment;
 import uk.ac.tees.honeycomb.velocity.fragments.StopTimetableFragment;
 
 public class MainActivity extends AppCompatActivity {
