@@ -54,4 +54,7 @@ public class RecViewAdapter extends RecyclerView.Adapter<ViewHolder> {
     public int getItemCount() {
         return qrName.size();
     }
+
+
+
 }

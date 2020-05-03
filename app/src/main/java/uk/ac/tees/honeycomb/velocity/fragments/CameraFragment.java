@@ -40,8 +40,8 @@ public class CameraFragment extends Fragment {
         qrCodeNameField = parentView.findViewById(R.id.qrCodeName);
 
         InputMethodManager imm = (InputMethodManager) parentView.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);   //pop up keyboard
-        imm.showSoftInput(qrCodeNameField, InputMethodManager.SHOW_FORCED);
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,InputMethodManager.HIDE_IMPLICIT_ONLY);
+        //imm.showSoftInput(qrCodeNameField, InputMethodManager.SHOW_FORCED);
+        //imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,InputMethodManager.HIDE_IMPLICIT_ONLY);
         qrCodeNameField.setImeOptions(EditorInfo.IME_ACTION_DONE);
         qrCodeNameField.setOnEditorActionListener((v, actionId, event) -> {     //if press enter, text is not visable
             if(actionId == EditorInfo.IME_ACTION_DONE && imm != null){
@@ -72,7 +72,13 @@ public class CameraFragment extends Fragment {
         cs.startPreview();
     }
 
-    public void getQrCodeFragement( QrCodeFragment point)
+    /**
+     *Passes the class an instance of the QrCodeFragment, so data from the fragment
+     * can be passed to the external fragment.
+     *
+     * @param - Instance of the QrCodeFragment, which is used throughout the application.
+     */
+    public void setQrCodeFragment( QrCodeFragment point)
     {
         pointer = point;
     }

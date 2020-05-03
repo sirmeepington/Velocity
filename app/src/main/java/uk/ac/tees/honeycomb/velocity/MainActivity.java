@@ -1,7 +1,12 @@
 package uk.ac.tees.honeycomb.velocity;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -30,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private final QrCodeFragment qrCode = new QrCodeFragment();
     private final CameraFragment camera = new CameraFragment();
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -103,9 +109,13 @@ public class MainActivity extends AppCompatActivity {
                     drawer.close();
                     return true;
                 case R.id.nav_camera:
-                    load(camera);
-                    camera.getQrCodeFragement(qrCode);
-                    drawer.close();
+                    boolean val = requestCameraPermission();
+                    if(val == true)
+                    {
+                        load(camera);
+                        camera.setQrCodeFragment(qrCode);
+                        drawer.close();
+                    }
                     return true;
                 default:
                     return false;
@@ -119,6 +129,22 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.fragment_container,fragment);
         transaction.disallowAddToBackStack();
         transaction.commit();
+    }
+
+    /**
+     * Checks the permission statue of the camera.
+     *
+     * @return false - if the permission has not been granted. Otherwise returns true.
+     */
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public boolean requestCameraPermission()
+    {
+        if(checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
+        {
+            requestPermissions(new String[]{Manifest.permission.CAMERA}, 999);
+            return false;
+        }
+        return true;
     }
 
 }
