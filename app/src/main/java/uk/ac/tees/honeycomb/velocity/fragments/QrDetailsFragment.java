@@ -26,7 +26,6 @@ public class QrDetailsFragment extends Fragment {
 
     TextView qrName, qrDate;
     ImageView qrContent;
-    String name, date;
     Bitmap bm;
 
 
