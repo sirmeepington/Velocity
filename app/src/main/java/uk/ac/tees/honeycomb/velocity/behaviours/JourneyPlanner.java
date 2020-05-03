@@ -19,6 +19,7 @@ import uk.ac.tees.honeycomb.velocity.api.entities.endpoints.JourneyFromStops;
 import uk.ac.tees.honeycomb.velocity.api.entities.endpoints.StopByName;
 import uk.ac.tees.honeycomb.velocity.api.entities.transportapi.Journey;
 import uk.ac.tees.honeycomb.velocity.api.entities.transportapi.JourneyRoute;
+import uk.ac.tees.honeycomb.velocity.api.entities.transportapi.RoutePart;
 import uk.ac.tees.honeycomb.velocity.stops.BusStop;
 import uk.ac.tees.honeycomb.velocity.stops.NaptanBusStop;
 
@@ -50,6 +51,11 @@ public class JourneyPlanner implements Behaviour {
         InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(parentView.getWindowToken(),0);
     }
+    private void showError(String text){
+        AlertDialog.Builder errEmptyFrom = new AlertDialog.Builder(getContext());
+        errEmptyFrom.setMessage(text);
+        errEmptyFrom.show();
+    }
 
     private void createListeners(View view){
         Button switchButton = view.findViewById(R.id.jpSwitch);
@@ -71,12 +77,6 @@ public class JourneyPlanner implements Behaviour {
         return parentView.getContext();
     }
 
-    private <T> T getCollectionAtIndex(Collection<T> coll, int index){
-        for(int i = 0; i < index; i++){
-            coll.iterator().next();
-        }
-        return coll.iterator().next();
-    }
 
     public void switchValues() {
 
@@ -175,33 +175,33 @@ public class JourneyPlanner implements Behaviour {
         hideKeyboard();
         if (checkFromText() || checkToText()){
 
-            AlertDialog.Builder errEmptyFrom = new AlertDialog.Builder(getContext());
-            errEmptyFrom.setMessage("Error: Please make sure the 'From' and 'To' fields are filled.");
-            errEmptyFrom.show();
+            showError("Error: Please make sure the 'From' and 'To' fields are filled.");
 
         }else if (!fromSearchCheck || !toSearchCheck){
 
-            AlertDialog.Builder errNoSearch = new AlertDialog.Builder(getContext());
-            errNoSearch.setMessage("Please search and select a bus stop.");
-            errNoSearch.show();
+            showError("Please search and select a bus stop.");
 
         }else{
             JourneySearch();
         }
     }
 
-    private void JourneySearch(){
+    public void JourneySearch(){
         JourneyFromStops jfs = new JourneyFromStops(getContext(),busStopFrom,busStopTo);
         jfs.query(response -> {
             Journey jpResult = response.getMessage().getJourney();
+            JourneyRoute[] jr = jpResult.getRoutes();
+
 
             final ListView resultList = parentView.findViewById(R.id.jpListView);
             if (jpResult.getRoutes() != null) {
                 // Do what you want with the journey result.
-                final ArrayAdapter<JourneyRoute> resultAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, android.R.id.text1, jpResult.getRoutes());
+                final ArrayAdapter<JourneyRoute> resultAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, android.R.id.text1, jr);
                 resultList.setAdapter(resultAdapter);
                 resultList.setOnItemClickListener((parent, view, position, id) -> {
 
+                    RoutePart[] rp = jr[position].getRouteParts();
+                    Toast.makeText(parentView.getContext(), rp[1].toString(), Toast.LENGTH_LONG).show();
                 });
                 Toast.makeText(parentView.getContext(), "Route found from "+jpResult.getSource(), Toast.LENGTH_LONG).show();
             } else {
