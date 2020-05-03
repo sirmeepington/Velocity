@@ -18,16 +18,35 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.MapStyleOptions;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PointOfInterest;
+import com.google.android.gms.tasks.Task;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.model.PlaceLikelihood;
+import com.google.android.libraries.places.api.net.FetchPlaceRequest;
+import com.google.android.libraries.places.api.net.FetchPlaceResponse;
+import com.google.android.libraries.places.api.net.FindCurrentPlaceRequest;
+import com.google.android.libraries.places.api.net.FindCurrentPlaceResponse;
+import com.google.android.libraries.places.api.net.PlacesClient;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.EnumSet;
+import java.util.List;
 
 import uk.ac.tees.honeycomb.velocity.R;
 
-public class MapsFragment extends Fragment implements OnMapReadyCallback, LocationListener {
+public class MapsFragment extends Fragment implements OnMapReadyCallback, LocationListener, GoogleMap.OnPoiClickListener {
 
     private GoogleMap mMap;
     private View parentView;
     private LocationManager location;
     private static final int LOCATION_UPDATE_DELAY_TIME = 10000;
     private static final int LOCATION_UPDATE_DISTANCE = 10000; // Unsure if this is the right type
+    private PlacesClient placesApi;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -35,6 +54,9 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Locati
 
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        Places.initialize(parentView.getContext(),getString(R.string.google_maps_key));
+        placesApi = Places.createClient(parentView.getContext());
 
         return parentView;
     }
@@ -47,6 +69,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Locati
         mMap.setMyLocationEnabled(true);
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
         mMap.getUiSettings().setCompassEnabled(true);
+        mMap.setOnPoiClickListener(this);
 
         try {
             mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(parentView.getContext(),R.raw.maps_poi_filter));
@@ -66,6 +89,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Locati
             Toast.makeText(parentView.getContext(), "Unable to find location.", Toast.LENGTH_LONG).show();
             Log.e("Velocity Map", "No Location provider enabled: "+ex.getMessage());
         }
+
     }
 
     @Override
@@ -89,4 +113,28 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Locati
     public void onProviderEnabled(String provider) { }
     @Override
     public void onProviderDisabled(String provider) { }
+
+    @Override
+    public void onPoiClick(PointOfInterest pointOfInterest) {
+        List<Place.Field> filterFields = new ArrayList<>();
+        filterFields.add(Place.Field.NAME);
+        filterFields.add(Place.Field.TYPES);
+        filterFields.add(Place.Field.ADDRESS);
+        filterFields.add(Place.Field.ID);
+        filterFields.add(Place.Field.LAT_LNG);
+        FetchPlaceRequest req = FetchPlaceRequest.builder(pointOfInterest.placeId,filterFields).build();
+        Task<FetchPlaceResponse> responseTask = placesApi.fetchPlace(req);
+        responseTask.addOnCompleteListener(task -> {
+            if (task.isSuccessful()){
+                FetchPlaceResponse res = task.getResult();
+                if (res == null){
+                    return;
+                }
+                Place place = res.getPlace();
+                if (place.getTypes().contains(Place.Type.BUS_STATION) || place.getTypes().contains(Place.Type.TRANSIT_STATION)){
+                    Log.d("Places","Nearby stop:  "+place.getName()+" - "+place.getId()+" - "+place.getAddress());
+                }
+            }
+        });
+    }
 }
