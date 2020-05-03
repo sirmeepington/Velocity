@@ -1,6 +1,7 @@
 package uk.ac.tees.honeycomb.velocity.fragments;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -13,12 +14,10 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.MapStyleOptions;
 
 import uk.ac.tees.honeycomb.velocity.R;
 
@@ -45,6 +44,15 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Locati
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setTrafficEnabled(true);
+        mMap.setMyLocationEnabled(true);
+        mMap.getUiSettings().setMyLocationButtonEnabled(true);
+        mMap.getUiSettings().setCompassEnabled(true);
+
+        try {
+            mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(parentView.getContext(),R.raw.maps_poi_filter));
+        } catch (Resources.NotFoundException ex){
+            // shrug
+        }
 
         location = (LocationManager) parentView.getContext().getSystemService(Context.LOCATION_SERVICE);
         if (location == null) {
@@ -62,13 +70,17 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Locati
 
     @Override
     public void onLocationChanged(Location location) {
+    }
+    /**
+        // For the method above.
         if (mMap == null)
             return;
 
         LatLng loc = new LatLng(location.getLatitude(),location.getLongitude());
-        mMap.addMarker(new MarkerOptions().position(loc).title("Player"));
+        mMap.addMarker(new MarkerOptions().position(loc).title("Your Position"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
     }
+    */
 
     // Unsure on the usage of these and the potential implications.
     @Override
