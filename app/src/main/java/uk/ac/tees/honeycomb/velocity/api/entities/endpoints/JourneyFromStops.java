@@ -36,7 +36,7 @@ public class JourneyFromStops extends Endpoint<JourneyResponse> {
      * @param to The ending {@link BusStop}; whose location is queried.
      */
     public JourneyFromStops(Context context, BusStop from, BusStop to){
-        super(context,"api/journey?from="+from.getLocation().getLongLat()+"&to="+to.getLocation().getLongLat());
+        super(context,"/api/journey/?from="+Impetus.encode(from.getLocation().getLongLat())+"&to="+ Impetus.encode(to.getLocation().getLongLat()));
     }
 
 

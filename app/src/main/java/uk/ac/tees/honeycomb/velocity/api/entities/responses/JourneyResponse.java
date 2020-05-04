@@ -15,7 +15,7 @@ import uk.ac.tees.honeycomb.velocity.api.entities.transportapi.Journey;
  */
 public class JourneyResponse {
 
-    private Journey journey;
+    private Journey data;
     private String from;
     private String to;
 
@@ -24,7 +24,7 @@ public class JourneyResponse {
      * @return The {@link Journey} returned.
      */
     public Journey getJourney() {
-        return journey;
+        return data;
     }
 
     public String getFrom() {
