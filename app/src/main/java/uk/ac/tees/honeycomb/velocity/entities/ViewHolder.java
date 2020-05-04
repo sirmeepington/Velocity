@@ -21,8 +21,9 @@ import uk.ac.tees.honeycomb.velocity.fragments.QrDetailsFragment;
 public class ViewHolder extends RecyclerView.ViewHolder{
 
     TextView tQrName, tQrDate;
-    ImageView iQrContent;
+    ImageView iQrContent,tempImage;
     QrDetailsFragment temp = new QrDetailsFragment();
+
 
     public ViewHolder(@NonNull View itemView, List<Bitmap> qrContent, List<String> qrName, List<String> qrDate) {
         super(itemView);
@@ -31,19 +32,15 @@ public class ViewHolder extends RecyclerView.ViewHolder{
 
 
             Bitmap b = qrContent.get(getAdapterPosition());
-            ByteArrayOutputStream ba = new ByteArrayOutputStream();
-            b.compress(Bitmap.CompressFormat.JPEG, 100, ba);
 
-            Intent i = new Intent(v.getContext(), QrDetailsFragment.class );
-            i.putExtra("name", qrName.get(getAdapterPosition()));
-            i.putExtra("date", qrDate.get(getAdapterPosition()));
-            i.putExtra("content", ba.toByteArray());
-            
+
+
         });
 
         tQrName = itemView.findViewById(R.id.qrCodeName);
         tQrDate = itemView.findViewById(R.id.qrCodeDate);
         iQrContent = itemView.findViewById(R.id.qrCodeImage);
+
 
     }
 

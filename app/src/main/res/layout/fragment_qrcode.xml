@@ -43,7 +43,9 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/historytext"
         android:layout_marginTop="10dp"
-        android:scrollbars="vertical"/>
+        android:scrollbars="vertical">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 
 </RelativeLayout>

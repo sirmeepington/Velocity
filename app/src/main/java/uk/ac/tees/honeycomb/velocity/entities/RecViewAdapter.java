@@ -38,6 +38,7 @@ public class RecViewAdapter extends RecyclerView.Adapter<ViewHolder> {
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = layoutInflater.inflate(R.layout.qrcodelistitem, parent, false);
         return new ViewHolder(view,qrContent,qrName,qrDate);
+
     }
 
     @Override
@@ -48,6 +49,7 @@ public class RecViewAdapter extends RecyclerView.Adapter<ViewHolder> {
         holder.tQrName.setText(name);
         holder.tQrDate.setText(date);
         holder.iQrContent.setImageBitmap(content);
+
     }
 
     @Override
