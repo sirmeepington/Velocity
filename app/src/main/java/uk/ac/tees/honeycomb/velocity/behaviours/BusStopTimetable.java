@@ -60,6 +60,9 @@ public class BusStopTimetable implements Behaviour {
      * inputted.
      */
     private void redirectButton() {
+        if (isSpinnerVisible()){
+            return; // Already searching.
+        }
         final EditText busStopInput = parentView.findViewById(R.id.busStopInput);
         cacheInput = busStopInput.getText().toString();
 
@@ -257,6 +260,15 @@ public class BusStopTimetable implements Behaviour {
     {
         final Spinner choices = parentView.findViewById(R.id.spinner_busstop);
         choices.setVisibility(visible ? View.VISIBLE : View.GONE);
+    }
+
+    /**
+     * Returns true if the spinner is visible. False otherwise.
+     * @return
+     */
+    private boolean isSpinnerVisible(){
+        final Spinner choices = parentView.findViewById(R.id.spinner_busstop);
+        return choices.getVisibility() == View.VISIBLE;
     }
 
     /**
