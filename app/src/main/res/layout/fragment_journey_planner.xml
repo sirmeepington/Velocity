@@ -73,7 +73,6 @@
         android:id="@+id/jpResults"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:layout_marginBottom="64dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -83,8 +82,12 @@
 
         <ListView
             android:id="@+id/busStops"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_width="389dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp" />
     </androidx.cardview.widget.CardView>
 
     <TextView
@@ -119,7 +122,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/jpResults" />
+        app:layout_constraintTop_toBottomOf="@+id/jpResults" >
+
+    </ListView>
 
     <Button
         android:id="@+id/jpFromSearch"
@@ -136,12 +141,13 @@
         android:id="@+id/jpToSearch"
         android:layout_width="82dp"
         android:layout_height="44dp"
+        android:layout_marginTop="40dp"
         android:text="Search"
-        app:layout_constraintBottom_toTopOf="@+id/jpListView"
+        app:layout_constraintBottom_toTopOf="@+id/jpConfirm"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.567"
+        app:layout_constraintHorizontal_bias="0.594"
         app:layout_constraintStart_toEndOf="@+id/jpTo"
         app:layout_constraintTop_toBottomOf="@+id/jpFromSearch"
-        app:layout_constraintVertical_bias="0.317" />
+        app:layout_constraintVertical_bias="0.708" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

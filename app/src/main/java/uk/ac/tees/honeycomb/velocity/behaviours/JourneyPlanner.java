@@ -3,6 +3,7 @@ package uk.ac.tees.honeycomb.velocity.behaviours;
 import android.content.Context;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,7 +11,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.cardview.widget.CardView;
 
+import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -197,33 +200,47 @@ public class JourneyPlanner implements Behaviour {
             Journey jpResult = response.getMessage().getJourney();
             JourneyRoute[] jr = jpResult.getRoutes();
             ArrayList<String> jrToString = new ArrayList<>();
+            String m = null;
             for(int i = 0; i != jr.length; i++){
-                String departure = jr[i].getDepartureTime();
-                String arrival = jr[i].getArrivalTime();
-                String travelTime = jr[i].getDuration();
-                jrToString.add("Departure: " + departure + "\n" + "Arrival: " + arrival + "\n" + "Travel time: " + travelTime);
+                RoutePart[] rp = jr[i].getRouteParts();
+                m = rp[0].getMode();
+                jrToString.add("Method of travel: " + m);
             }
 
             final ListView resultList = parentView.findViewById(R.id.jpListView);
+            final ListView routeList = parentView.findViewById(R.id.busStops);
             if (jpResult.getRoutes() != null) {
 
                 final ArrayAdapter<String> resultAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, android.R.id.text1, jrToString);
                 resultList.setAdapter(resultAdapter);
                 resultList.setOnItemClickListener((parent, view, position, id) -> {
+                    resultList.setVisibility(View.GONE);
 
-                    try {
-                        DateFormat df = new SimpleDateFormat("HH:mm:ss");
-                        String departureTimeString = jr[position].getDepartureTime() + ":00";
-                        Date currentTime = new Date();
-                        Date departureTime = df.parse(departureTimeString);
-                        String diff = checkDifference(departureTime, currentTime);
-                        showError(diff);
-                    } catch (ParseException e) {
-                        e.printStackTrace();
+                    RoutePart[] routeParts = jr[position].getRouteParts();
+                    ArrayList<String> routePartsToString = new ArrayList<>();
+                    for (int i = 0; i!= routeParts.length; i++){
+                        String sMode = routeParts[i].getMode();
+                        String sLine = routeParts[i].getLineName();
+                        String sDepartureTime = routeParts[i].getDepartureTime();
+                        String sDeparturePlace = routeParts[i].getFromName();
+                        sDeparturePlace = sDeparturePlace.replace(", specified point", " ");
+                        String sArrivalTime = routeParts[i].getArrivalTime();
+                        String sArrivalPlace = routeParts[i].getToName();
+                        sArrivalPlace = sArrivalPlace.replace(", specified point", " ");
+                        routePartsToString.add("Travel by: " + sMode + "\n"
+                                                + "Line No: " + sLine + "\n"
+                                                + "Departure from: " + sDeparturePlace + " at " + sDepartureTime + "\n"
+                                                + "Arrive at: " + sArrivalPlace + "at " + sArrivalTime);
                     }
+                    final ArrayAdapter<String> routePartArrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, android.R.id.text1, routePartsToString);
+                    routeList.setAdapter(routePartArrayAdapter);
+                    routeList.setOnItemClickListener((parent1, view1, position1, id1) -> {
+
+                    });
 
 
                 });
+
                 Toast.makeText(parentView.getContext(), "Route found from "+jpResult.getSource(), Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(parentView.getContext(), "No Route Found, Sorry.", Toast.LENGTH_LONG).show();
@@ -232,25 +249,11 @@ public class JourneyPlanner implements Behaviour {
         }, error -> {});
     }
 
-    public String checkDifference(Date d1, Date d2){
-        String timeRemaining="Your bus departures in: ";
-
-        long diff = d1.getTime() - d2.getTime();
-
-        diff = diff / 1000;
-
-        long hours = diff / (60 * 60) % 24;
-        long minutes = diff / 60 % 60;
-        if(hours != 0){
-            timeRemaining += hours + " hours, ";
-            timeRemaining += minutes + " minutes!";
-        }else{
-            timeRemaining += minutes + " minutes!";
-        }
 
 
-        return timeRemaining;
-    }
+
+
+    
 
 
 
