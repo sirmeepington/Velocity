@@ -1,7 +1,6 @@
 package uk.ac.tees.honeycomb.velocity.fragments;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -17,24 +16,15 @@ import androidx.fragment.app.Fragment;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.MapStyleOptions;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PointOfInterest;
 import com.google.android.gms.tasks.Task;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
-import com.google.android.libraries.places.api.model.PlaceLikelihood;
 import com.google.android.libraries.places.api.net.FetchPlaceRequest;
 import com.google.android.libraries.places.api.net.FetchPlaceResponse;
-import com.google.android.libraries.places.api.net.FindCurrentPlaceRequest;
-import com.google.android.libraries.places.api.net.FindCurrentPlaceResponse;
 import com.google.android.libraries.places.api.net.PlacesClient;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.EnumSet;
 import java.util.List;
 
 import uk.ac.tees.honeycomb.velocity.R;
@@ -70,12 +60,6 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Locati
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
         mMap.getUiSettings().setCompassEnabled(true);
         mMap.setOnPoiClickListener(this);
-
-        try {
-            mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(parentView.getContext(),R.raw.maps_poi_filter));
-        } catch (Resources.NotFoundException ex){
-            // shrug
-        }
 
         location = (LocationManager) parentView.getContext().getSystemService(Context.LOCATION_SERVICE);
         if (location == null) {
