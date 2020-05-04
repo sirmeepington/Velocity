@@ -22,4 +22,27 @@
     <string name="imgLineTimetable">image assigned with the line timetable</string>
     <string name="imgBusStops">image assigned with the bus stops</string>
     <string name="imgOptions">image assigned with options</string>
+
+    <string name="qr_code">QR Code</string>
+    <string name="qr_camera">Select "Camera" from the sidebar to scan a QR code</string>
+
+
+        <string name="ToS_Service_Des">
+        Velocity: Terms of Service (ToS)\n\n
+            PLEASE READ THESE TERMS OF SERVICE CAREFULLY. AS THIS IS A BINDING CONTRACT BETWEEN YOU (THE CLIENT) AND US (THE SERVICE PROVIDER).\n\n
+            Introduction\n\nThank you for downloading the Velocity mobile application. This application is available for free to you the user, along with it are some services and features to make the use of transportation easier within the North East region of England. By downloading and installing this application on your device, you have agreed to our Terms of Service (ToS), which is listed below.\n\n
+            Service\n\n
+            Velocity allows access to real-time bus schedules provided by third-party companies. These provided schedules are updated in real-time. So, you can get accurate arrivals of buses, travel routes, and more. However, by agreeing to our ToS, you are also agreeing to the Terms of Service provided by these additional third parties. These additional third parties are Transport API, and finally the NapTAN data set available from the government.\n\n
+            Declaration: NapTAN data which has been used within this application is using the Open Government License\n\n
+Velocity makes obtaining relevant bus information easier for you the user, and conveniently within one application. However, Velocity makes use of external API, so if you experience issues access information about bus stops or other services, this make be a result of issues with the third parties. Which unfortunately we cannot resolve.\n\n
+Furthermore, Velocity also offers use of some features, such as digitally storing tickets and finding bus stops near you. But, these features make use of your devices features. So, to access and utilize them you must grant access for Velocity to access them. You may revoke access at anytime in your devices settings but doing so also revokes access to these features. Justification on why these features are needed as listed below:\n\n
+-	Camera: Camera permission is requested and necessary due to the ability to digital store your tickets by scanning the QR Code. To achieve this the camera along with some external libraries are used to detect and generate the QR code on the phone. There you will then have a digital copy of your tickets available within the QR Code Fragment.\n\n
+
+-	Storage: Storage is necessary to store the digital copies of the scanned QR code. Rest assured no other application will have access to this information. Only Velocity will be able to read and store this information.\n\n
+
+-	Location: Location is another mobile feature which is available in this application. You can grant access to Velocity to this feature, then you can use the Maps fragment to find near by bus stops.\n
+</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
