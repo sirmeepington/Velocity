@@ -39,7 +39,6 @@
             android:label="@string/title_activity_maps"></activity>
         <activity android:name=".OptionsActivity" />
         <activity android:name=".JourneyPlannerActivity" />
-        <activity android:name=".BusStopActivity" />
         <activity android:name=".LineTimetableActivity" />
         <activity android:name=".MainActivity"
             android:windowSoftInputMode="adjustPan">

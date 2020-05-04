@@ -25,13 +25,21 @@ import uk.ac.tees.honeycomb.velocity.api.entities.endpoints.StopTimetable;
 import uk.ac.tees.honeycomb.velocity.api.entities.transportapi.Departure;
 import uk.ac.tees.honeycomb.velocity.stops.NaptanBusStop;
 
+/**
+ * A fragment behaviour for the Bus Stop Timetable feature.
+ *
+ * @author Jordon
+ * @since 11/2/20
+ *
+ * @author Aidan
+ * @since 4/5/20
+ */
 public class BusStopTimetable implements Behaviour {
 
     private final View parentView;
     private HashMap<String, String> loadedStops = new HashMap<>();
     private ArrayList<String> atco = new ArrayList<>();
     private String cacheInput = null;
-
 
     public BusStopTimetable(View parentView){
         this.parentView = parentView;
@@ -43,12 +51,18 @@ public class BusStopTimetable implements Behaviour {
         edtTxt.setText(cacheInput);
         Button confirmButton = view.findViewById(R.id.confirm_busstop);
         confirmButton.setOnClickListener((view1) -> redirectButton());
-        makeSpinnerVisible(false);
-        makeProggressBarvisible(false);
+        setSpinnerVisibility(false);
+        setProgressBarVisibility(false);
     }
 
-    public void redirectButton() {
-
+    /**
+     * Method ran when the "confirm" button is pressed which finds the bus stops from the text
+     * inputted.
+     */
+    private void redirectButton() {
+        if (isSpinnerVisible()){
+            return; // Already searching.
+        }
         final EditText busStopInput = parentView.findViewById(R.id.busStopInput);
         cacheInput = busStopInput.getText().toString();
 
@@ -59,6 +73,10 @@ public class BusStopTimetable implements Behaviour {
         }
     }
 
+    /**
+     * A reference to the Context this object was instantiated with.
+     * @return The parent view's Context.
+     */
     private Context getViewContext(){
         return parentView.getContext();
     }
@@ -68,15 +86,16 @@ public class BusStopTimetable implements Behaviour {
         return pattern.matcher(postCode).matches();
 
     }
-private void removeArrayElements()
-{
-    atco.removeAll(atco);
-    loadedStops.clear();
-}
+
+    private void removeArrayElements()
+    {
+        atco.clear();
+        loadedStops.clear();
+    }
 
     private void showBusStopsViaPostCode() {
         removeArrayElements();
-        makeProggressBarvisible(true);
+        setProgressBarVisibility(true);
 
         final Spinner choices = parentView.findViewById(R.id.spinner_busstop);
 
@@ -86,15 +105,13 @@ private void removeArrayElements()
         final StopByPostcode SBP = new StopByPostcode(getViewContext(), message);
         SBP.query(
                 response -> {
-                    Log.d("Velocity", response.getMessage().getSources().toString());
-                    busStopInput.setHint("Loaded Successfully");
                     final List<NaptanBusStop> stops = response.getMessage().getData();
                     if (stops == null) {
                         Log.d("Velocity", "No values found.");
-                        makeProggressBarvisible(false);
+                        setProgressBarVisibility(false);
                         TableLayout tb = parentView.findViewById(R.id.score_table);
                         tb.removeAllViews();
-                        AddRow(getViewContext(),tb,"Apologies, No Bus Stops Can be Found With" +
+                        AddRow(getViewContext(),tb,"Apologies, No Bus Stops can be found with" +
                                 "\nZIP Code");
                         clearSpinner();
                         return;
@@ -109,8 +126,8 @@ private void removeArrayElements()
                         loadedStops.put(stop.getAtcoCode().toLowerCase(), stop.getName() + " - " + stop.getLocality());
                         atco.add(stop.getAtcoCode().toLowerCase());
                     }
-                    makeProggressBarvisible(false);
-                    makeSpinnerVisible(true);
+                    setProgressBarVisibility(false);
+                    setSpinnerVisibility(true);
                     ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getViewContext(), android.R.layout.simple_spinner_item, new ArrayList<>(loadedStops.values()));
                     arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     choices.setAdapter(arrayAdapter);
@@ -126,7 +143,7 @@ private void removeArrayElements()
 
                 },
                 error -> { Log.e("Velocity", "Error" + error);
-                    makeProggressBarvisible(false);
+                    setProgressBarVisibility(false);
 
                     TableLayout tb = parentView.findViewById(R.id.score_table);
                     tb.removeAllViews();
@@ -139,7 +156,7 @@ private void removeArrayElements()
 
     private void showBusStopViaName() {
         removeArrayElements();
-        makeProggressBarvisible(true);
+        setProgressBarVisibility(true);
         final Spinner choices = parentView.findViewById(R.id.spinner_busstop);
 
         final EditText busStopInput = parentView.findViewById(R.id.busStopInput);
@@ -159,7 +176,7 @@ private void removeArrayElements()
                         TableLayout tb = parentView.findViewById(R.id.score_table);
                         tb.removeAllViews();
                         AddRow(getViewContext(),tb,"No Bus Stops Found with that Name.");
-                        makeProggressBarvisible(false);
+                        setProgressBarVisibility(false);
                         return;
                     }
 
@@ -172,8 +189,8 @@ private void removeArrayElements()
                         loadedStops.put(stop.getAtcoCode().toLowerCase(), stop.getName() + " - " + stop.getLocality());
                         atco.add(stop.getAtcoCode().toLowerCase());
                     }
-                    makeProggressBarvisible(false);
-                    makeSpinnerVisible(true);
+                    setProgressBarVisibility(false);
+                    setSpinnerVisibility(true);
                     ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getViewContext(), android.R.layout.simple_spinner_item, new ArrayList<>(loadedStops.values()));
                     arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     choices.setAdapter(arrayAdapter);
@@ -191,7 +208,7 @@ private void removeArrayElements()
 
                 },
                 error -> { Log.e("Velocity", "Error" + error);
-                    makeProggressBarvisible(false);
+                    setProgressBarVisibility(false);
                     TableLayout tb = parentView.findViewById(R.id.score_table);
                     tb.removeAllViews();
                     AddRow(getViewContext(),tb,"Apologies, Service Appears To be Down." +
@@ -227,7 +244,7 @@ private void removeArrayElements()
                     }
                 },
                 error -> { Log.e("Velocity", "Error" + error);
-                    makeProggressBarvisible(false);
+                    setProgressBarVisibility(false);
                     TableLayout tb = parentView.findViewById(R.id.score_table);
                     tb.removeAllViews();
                     AddRow(getViewContext(),tb,"Apologies, Service Appears To be Down." +
@@ -235,16 +252,34 @@ private void removeArrayElements()
         );
     }
 
-    private void makeSpinnerVisible(boolean visible)
+    /**
+     * Changes the visibility of the spinner (drop down selection) for bus stop choices.
+     * @param visible Whether or not to make the spinner visible.
+     */
+    private void setSpinnerVisibility(boolean visible)
     {
         final Spinner choices = parentView.findViewById(R.id.spinner_busstop);
         choices.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
-    private void makeProggressBarvisible(boolean visible)
+    /**
+     * Returns true if the spinner is visible. False otherwise.
+     * @return
+     */
+    private boolean isSpinnerVisible(){
+        final Spinner choices = parentView.findViewById(R.id.spinner_busstop);
+        return choices.getVisibility() == View.VISIBLE;
+    }
+
+    /**
+     * Changes the visibility of the progress bar (spinning wheel) for loading the bus stops
+     * matching the name given.
+     * @param visible Whether or not to make the progress bar visible.
+     */
+    private void setProgressBarVisibility(boolean visible)
     {
-        final ProgressBar loadingbar = parentView.findViewById(R.id.progressBar);
-        loadingbar.setVisibility(visible ? View.VISIBLE : View.GONE);
+        final ProgressBar loadingBar = parentView.findViewById(R.id.progressBar);
+        loadingBar.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
     private void clearSpinner()
@@ -252,6 +287,13 @@ private void removeArrayElements()
         Spinner choices = parentView.findViewById(R.id.spinner_busstop);
         choices.removeAllViews();
     }
+
+    /**
+     * Adds a row to the given {@link TableLayout} with the text given.
+     * @param context The context for this operation.
+     * @param layout The layout to add a row to.
+     * @param text The text to be added to the newly created row.
+     */
     private void AddRow(Context context, TableLayout layout, String text){
         TableRow row = new TableRow(context);
         TextView textView = new TextView(context);
