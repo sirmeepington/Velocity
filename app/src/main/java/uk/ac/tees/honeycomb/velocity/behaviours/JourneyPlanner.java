@@ -3,7 +3,6 @@ package uk.ac.tees.honeycomb.velocity.behaviours;
 import android.content.Context;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,16 +10,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.cardview.widget.CardView;
 
-import java.lang.reflect.Array;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
 
 import uk.ac.tees.honeycomb.velocity.R;
 import uk.ac.tees.honeycomb.velocity.api.entities.endpoints.JourneyFromStops;
@@ -59,10 +50,10 @@ public class JourneyPlanner implements Behaviour {
         InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(parentView.getWindowToken(),0);
     }
-    private void showError(String text){
-        AlertDialog.Builder errEmptyFrom = new AlertDialog.Builder(getContext());
-        errEmptyFrom.setMessage(text);
-        errEmptyFrom.show();
+    private void showMessage(String text){
+        AlertDialog.Builder message = new AlertDialog.Builder(getContext());
+        message.setMessage(text);
+        message.show();
     }
 
     private void createListeners(View view){
@@ -149,6 +140,7 @@ public class JourneyPlanner implements Behaviour {
     }
 
     public void toSearch(){
+        hideKeyboard();
         final EditText toInput = parentView.findViewById(R.id.jpTo);
         String toInputText =  toInput.getText().toString();
         final StopByName toStop = new StopByName(getContext(), toInputText);
@@ -183,11 +175,11 @@ public class JourneyPlanner implements Behaviour {
         hideKeyboard();
         if (checkFromText() || checkToText()){
 
-            showError("Error: Please make sure the 'From' and 'To' fields are filled.");
+            showMessage("Error: Please make sure the 'From' and 'To' fields are filled.");
 
         }else if (!fromSearchCheck || !toSearchCheck){
 
-            showError("Please search and select a bus stop.");
+            showMessage("Please search and select a bus stop.");
 
         }else{
             JourneySearch();
