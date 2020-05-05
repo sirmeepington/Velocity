@@ -1,5 +1,7 @@
 package uk.ac.tees.honeycomb.velocity.entities;
 
+import java.util.Locale;
+
 /**
  * Class to hold the longitude and latitude supplied by or given to the API for easier usage.
  */
@@ -34,4 +36,17 @@ public class Location {
     public double getLatitude() {
         return latitude;
     }
+
+
+    /**
+     * Returns a formatted string depicting this location as usable for the Journey Planner.
+     * The format is as such: {@code longlat:0.00000,0.00000} for longitude and latitude
+     * respectfully.
+     * @return The formatted string for this location.
+     * @see uk.ac.tees.honeycomb.velocity.api.entities.endpoints.JourneyFromCoords
+     */
+    public String getLongLat(){
+        return String.format(Locale.ENGLISH,"lonlat:%f,%f", getLongitude(), getLatitude());
+    }
+
 }

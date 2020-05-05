@@ -1,5 +1,7 @@
 package uk.ac.tees.honeycomb.velocity.api.requests;
 
+import android.util.Log;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;

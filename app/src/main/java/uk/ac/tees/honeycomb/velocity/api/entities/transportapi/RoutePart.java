@@ -1,0 +1,112 @@
+package uk.ac.tees.honeycomb.velocity.api.entities.transportapi;
+
+import uk.ac.tees.honeycomb.velocity.entities.Location;
+
+/**
+ * A step / part of a {@link JourneyRoute}.
+ * A route may have many of these parts; these can signify a change
+ * in transport or service throughout a route.
+ *
+ * @see JourneyRoute
+ *
+ * @author Aidan
+ * @since 08/04/20
+ */
+public class RoutePart {
+
+    private String arrival_time;
+    private double[][] coordinates;
+    private String departure_time;
+    private String destination;
+    private String duration;
+    private String from_point_name;
+    private String line_name;
+    private String mode;
+    private String to_point_name;
+
+    /**
+     * Returns the estimated time to which you will arrive to this part.
+     * @return The arrival time of this part.
+     */
+    public String getArrivalTime() {
+        return arrival_time;
+    }
+
+    /**
+     * Returns a list of coordinates which create a line on a map.
+     * These coordinates are ordered from the beginning of this part to the end of the part
+     * and can be used for illustration on a map.
+     * @return An ordered array of coordinates.
+     */
+    public Location[] getCoordinates() {
+        if (coordinates == null){
+            return null;
+        }
+        Location[] coords = new Location[coordinates.length];
+        for(int i = 0; i < coordinates.length; i++) {
+            double[] location = coordinates[i];
+            if (location == null) {
+                continue;
+            }
+            coords[i] = new Location(location[0],location[1]);
+        }
+        return coords;
+    }
+
+    /**
+     * Returns the departure time for this part.
+     * @return The departure time.
+     */
+    public String getDepartureTime() {
+        return departure_time;
+    }
+
+    /**
+     * Returns the name of the destination for this part for the user to interpret.
+     * @return The destination name for this part.
+     */
+    public String getDestination() {
+        return destination;
+    }
+
+    /**
+     * A string displaying the time in minutes and hours this part of the route will
+     * take.
+     * @return The route part's duration.
+     */
+    public String getDuration() {
+        return duration;
+    }
+
+    /**
+     * The name of the origin of this route part.
+     * @return The route part's origin name.
+     */
+    public String getFromName() {
+        return from_point_name;
+    }
+
+    /**
+     * The line or service name for this route. May be null for foot travel.
+     * @return The line name.
+     */
+    public String getLineName() {
+        return line_name;
+    }
+
+    /**
+     * Gets the mode of transport used.
+     * @return The mode of transport.
+     */
+    public String getMode() {
+        return mode;
+    }
+
+    /**
+     * Returns the destination name for this route part.
+     * @return The destination name.
+     */
+    public String getToName() {
+        return to_point_name;
+    }
+}

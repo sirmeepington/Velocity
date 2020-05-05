@@ -2,7 +2,6 @@ package uk.ac.tees.honeycomb.velocity.api.entities.responses;
 
 import java.util.List;
 
-import uk.ac.tees.honeycomb.velocity.stops.BusStop;
 import uk.ac.tees.honeycomb.velocity.stops.NaptanBusStop;
 
 /**
